@@ -67,6 +67,18 @@ in {
     jack.enable = true;
     wireplumber.enable = true;
   };
+  # BLUETOOTH SUPPORT
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy.AutoEnable = true;
+    };
+  };
   # TOUCHPAD SUPPORT
   services.libinput.enable = true;
   # USER ACCOUNT
