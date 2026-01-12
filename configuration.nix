@@ -118,6 +118,7 @@ in {
       gawk
       git
       eza
+      bat
       fd
       jq
     ]) ++ (with code-extensions; [
@@ -185,6 +186,27 @@ in {
     ]) ++ (with nvtop; [
       nvidia
     ]);
+  };
+  # BASHRC
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      top = "htop";
+      vim = "nvim";
+      vi = "nvim";
+      ls = "eza";
+    };
+    initExtra = ''
+      gcomm() {
+        local now="$(date '+%F %T')"
+        local msg="''${*:-Unspecified}"
+        git add . && git commit -m "Skye Lane Goetz (''${msg}) ''${now}"
+      }
+      gpush() {
+        local branch="''${1:-main}"
+        git push origin "''${branch}"
+      }
+    ''
   };
   # FIREFOX INSTALL
   programs.firefox.enable = true;
