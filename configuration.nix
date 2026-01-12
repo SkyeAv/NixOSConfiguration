@@ -156,6 +156,7 @@ in {
       zainchen.json
     ]) ++ (with py; [
       sentence-transformers
+      sqlite-utils
       scikit-learn
       transformers
       onnxruntime
