@@ -90,6 +90,7 @@ in {
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "docker"
       "wheel"
     ];
     packages = (with pkgs; [
@@ -109,7 +110,6 @@ in {
       neovim
       ffmpeg
       heroic
-      docker
       duckdb
       nimble
       ocaml
@@ -281,6 +281,8 @@ in {
       proton-ge-bin
     ];
   };
+  # DOCKER ENABLE
+  virtualisation.docker.enable = true;
   # NIX VERSION
   system.stateVersion = "25.11";
 }
