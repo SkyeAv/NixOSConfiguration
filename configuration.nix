@@ -4,6 +4,7 @@ let
   cuda = pkgs.cudaPackages;
   plasma = pkgs.kdePackages;
   nvtop = pkgs.nvtopPackages;
+  code-extensions = pkgs.vscode-extensions;
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -91,6 +92,8 @@ in {
     ];
     packages = (with pkgs; [
       bitwarden-desktop
+      datafusion-cli
+      texliveFull
       libreoffice
       imagemagick
       fastfetch
@@ -102,6 +105,8 @@ in {
       neovim
       ffmpeg
       heroic
+      docker
+      duckdb
       gimp2
       slack
       tmux
@@ -109,10 +114,68 @@ in {
       curl
       wget
       lshw
+      gawk
       git
       eza
       fd
       jq
+    ]) ++ (with code-extensions; [
+      shd101wyy.markdown-preview-enhanced
+      ms-toolsai.vscode-jupyter-cell-tags
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-vscode-remote.remote-ssh-edit
+      ms-toolsai.jupyter-renderers
+      ms-vscode-remote.remote-ssh
+      yzhang.markdown-all-in-one
+      aaron-bond.better-comments
+      ms-vscode.remote-explorer
+      ms-toolsai.jupyter-keymap
+      tamasfe.even-better-toml
+      johnpapa.vscode-peacock
+      james-yu.latex-workshop
+      mechatroner.rainbow-csv
+      oderwat.indent-rainbow
+      esbenp.prettier-vscode
+      ms-toolsai.jupyter
+      jnoortheen.nix-ide
+      redhat.vscode-yaml
+      ms-python.python
+      sdras.night-owl
+      eamodio.gitlens
+      zainchen.json
+    ]) ++ (with py; [
+      sentence-transformers
+      scikit-learn
+      transformers
+      onnxruntime
+      matplotlib
+      setuptools
+      playwright
+      accelerate
+      biopython
+      rapidfuzz
+      lightgbm
+      seaborn
+      optimum
+      fastapi
+      pyexcel
+      pyyaml
+      duckdb
+      orjson
+      polars
+      mkdocs
+      pandas
+      python
+      flake8
+      scipy
+      sympy
+      torch
+      typer
+      numpy
+      wheel
+      shap
+      peft
+      pip
     ]) ++ (with plasma; [
       kdeconnect-kde
       kate
@@ -164,8 +227,8 @@ in {
   # SUID WRAPPERS
   programs.mtr.enable = true;
   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
+    enable = true;
+    enableSSHSupport = true;
   };
   # ENABLE OPENSSH
   services.openssh.enable = true;
