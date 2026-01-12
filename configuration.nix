@@ -1,10 +1,12 @@
 {pkgs, lib, config, ...}:
 let
-  py = pkgs.python13Packages;
-  cuda = pkgs.cudaPackages;
-  plasma = pkgs.kdePackages;
-  nvtop = pkgs.nvtopPackages;
   code-extensions = pkgs.vscode-extensions;
+  beam = pkgs.beamMinimal28Packages;
+  py = pkgs.python13Packages;
+  nvtop = pkgs.nvtopPackages;
+  caml = pkgs.ocamlPackages;
+  plasma = pkgs.kdePackages;
+  cuda = pkgs.cudaPackages;
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -97,6 +99,7 @@ in {
       texliveFull
       libreoffice
       imagemagick
+      ipykernel
       fastfetch
       pciutils
       ripgrep
@@ -108,16 +111,21 @@ in {
       heroic
       docker
       duckdb
+      nimble
+      ocaml
       gimp2
       slack
       tmux
       htop
       curl
+      opam
+      dune
       wget
       lshw
       gawk
       git
       eza
+      nim
       bat
       fd
       jq
@@ -133,6 +141,7 @@ in {
       ms-vscode.remote-explorer
       ms-toolsai.jupyter-keymap
       tamasfe.even-better-toml
+      ocamllabs.ocaml-platform
       johnpapa.vscode-peacock
       james-yu.latex-workshop
       mechatroner.rainbow-csv
@@ -175,9 +184,14 @@ in {
       typer
       numpy
       wheel
+      zstd
       shap
       peft
       pip
+    ]) ++ (with caml; [
+      cmdliner
+    ]) ++ (with beam; [
+      elixir
     ]) ++ (with plasma; [
       kdeconnect-kde
       kate
