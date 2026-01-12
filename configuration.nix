@@ -91,6 +91,7 @@ in {
       "wheel"
     ];
     packages = (with pkgs; [
+      openconnect_openssl
       bitwarden-desktop
       datafusion-cli
       texliveFull
