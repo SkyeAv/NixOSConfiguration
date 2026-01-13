@@ -2,7 +2,7 @@
 let
   code-extensions = pkgs.vscode-extensions;
   beam = pkgs.beamMinimal28Packages;
-  py = pkgs.python13Packages;
+  py = pkgs.python313Packages;
   nvtop = pkgs.nvtopPackages;
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
@@ -100,7 +100,6 @@ in {
       texliveFull
       libreoffice
       imagemagick
-      ipykernel
       fastfetch
       pciutils
       ripgrep
@@ -166,6 +165,7 @@ in {
       accelerate
       biopython
       rapidfuzz
+      ipykernel
       lightgbm
       seaborn
       optimum
@@ -211,17 +211,6 @@ in {
       vi = "nvim";
       ls = "eza";
     };
-    initExtra = ''
-      gcomm() {
-        local now="$(date '+%F %T')"
-        local msg="''${*:-Unspecified}"
-        git add . && git commit -m "Skye Lane Goetz (''${msg}) ''${now}"
-      }
-      gpush() {
-        local branch="''${1:-main}"
-        git push origin "''${branch}"
-      }
-    ''
   };
   # FIREFOX INSTALL
   programs.firefox.enable = true;
