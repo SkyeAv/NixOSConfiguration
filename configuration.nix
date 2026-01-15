@@ -7,6 +7,34 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
+   = vscode-with-extensions.override {
+    vscodeExtensions = (with code-extensions; [
+      shd101wyy.markdown-preview-enhanced
+      ms-toolsai.vscode-jupyter-cell-tags
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-vscode-remote.remote-ssh-edit
+      ms-toolsai.jupyter-renderers
+      ms-vscode-remote.remote-ssh
+      yzhang.markdown-all-in-one
+      aaron-bond.better-comments
+      ms-vscode.remote-explorer
+      ms-toolsai.jupyter-keymap
+      tamasfe.even-better-toml
+      ocamllabs.ocaml-platform
+      johnpapa.vscode-peacock
+      james-yu.latex-workshop
+      mechatroner.rainbow-csv
+      oderwat.indent-rainbow
+      esbenp.prettier-vscode
+      ms-toolsai.jupyter
+      jnoortheen.nix-ide
+      redhat.vscode-yaml
+      ms-python.python
+      sdras.night-owl
+      eamodio.gitlens
+      zainchen.json
+    ]);
+  };
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -128,31 +156,6 @@ in {
       bat
       fd
       jq
-    ]) ++ (with code-extensions; [
-      shd101wyy.markdown-preview-enhanced
-      ms-toolsai.vscode-jupyter-cell-tags
-      ms-toolsai.vscode-jupyter-slideshow
-      ms-vscode-remote.remote-ssh-edit
-      ms-toolsai.jupyter-renderers
-      ms-vscode-remote.remote-ssh
-      yzhang.markdown-all-in-one
-      aaron-bond.better-comments
-      ms-vscode.remote-explorer
-      ms-toolsai.jupyter-keymap
-      tamasfe.even-better-toml
-      ocamllabs.ocaml-platform
-      johnpapa.vscode-peacock
-      james-yu.latex-workshop
-      mechatroner.rainbow-csv
-      oderwat.indent-rainbow
-      esbenp.prettier-vscode
-      ms-toolsai.jupyter
-      jnoortheen.nix-ide
-      redhat.vscode-yaml
-      ms-python.python
-      sdras.night-owl
-      eamodio.gitlens
-      zainchen.json
     ]) ++ (with py; [
       sentence-transformers
       sqlite-utils
@@ -200,6 +203,8 @@ in {
       cudatoolkit
     ]) ++ (with nvtop; [
       nvidia
+    ]) ++ ([
+      vscode
     ]);
   };
   # BASHRC
