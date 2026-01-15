@@ -306,36 +306,42 @@ in {
     algorithm = "zstd";
     memoryPercent = 10;
   };
-  # VSCODE INSTALL
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhs;
-    extensions = (with code-extensions; [
-      shd101wyy.markdown-preview-enhanced
-      ms-toolsai.vscode-jupyter-cell-tags
-      ms-toolsai.vscode-jupyter-slideshow
-      ms-vscode-remote.remote-ssh-edit
-      ms-toolsai.jupyter-renderers
-      ms-vscode-remote.remote-ssh
-      yzhang.markdown-all-in-one
-      aaron-bond.better-comments
-      ms-vscode.remote-explorer
-      ms-toolsai.jupyter-keymap
-      tamasfe.even-better-toml
-      ocamllabs.ocaml-platform
-      johnpapa.vscode-peacock
-      james-yu.latex-workshop
-      mechatroner.rainbow-csv
-      oderwat.indent-rainbow
-      esbenp.prettier-vscode
-      ms-toolsai.jupyter
-      jnoortheen.nix-ide
-      redhat.vscode-yaml
-      ms-python.python
-      sdras.night-owl
-      eamodio.gitlens
-      zainchen.json
-    ]);
+  # HOME MANAGER
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.skyeav = {
+    home.stateVersion = "25.11";
+    # VSCODE INSTALL
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode.fhs;
+      extensions = (with code-extensions; [
+        shd101wyy.markdown-preview-enhanced
+        ms-toolsai.vscode-jupyter-cell-tags
+        ms-toolsai.vscode-jupyter-slideshow
+        ms-vscode-remote.remote-ssh-edit
+        ms-toolsai.jupyter-renderers
+        ms-vscode-remote.remote-ssh
+        yzhang.markdown-all-in-one
+        aaron-bond.better-comments
+        ms-vscode.remote-explorer
+        ms-toolsai.jupyter-keymap
+        tamasfe.even-better-toml
+        ocamllabs.ocaml-platform
+        johnpapa.vscode-peacock
+        james-yu.latex-workshop
+        mechatroner.rainbow-csv
+        oderwat.indent-rainbow
+        esbenp.prettier-vscode
+        ms-toolsai.jupyter
+        jnoortheen.nix-ide
+        redhat.vscode-yaml
+        ms-python.python
+        sdras.night-owl
+        eamodio.gitlens
+        zainchen.json
+      ]);
+    };
   };
   # VSCODE USE WAYLAND
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
