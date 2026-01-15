@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{pkgs, inputs, lib, config, ...}:
 let
   code-extensions = pkgs.vscode-extensions;
   beam = pkgs.beamMinimal28Packages;
@@ -24,10 +24,12 @@ in {
     substituters = [
       "https://cache.nixos.org"
       "https://cache.flox.dev"
+      "https://attic.xuyh0120.win/lantian"
     ];
     trusted-public-keys = [
       "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs"
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
   # GARBAGE COLLECTOR
@@ -40,20 +42,45 @@ in {
   boot.loader.timeout = 1;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # KERNEL PACKAGES
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  # ENABLE SPECIAL lBOOT
+  # CATCHYOS KERNEL
+  nixpkgs.overlays = [
+    inputs.nix-cachyos-kernel.overlays.pinned
+  ];
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+  # ANANICY PROCESS PRIORITY
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
+    rulesProvider = pkgs.ananicy-rules-cachyos;
+  };
+  # SYSCTL TWEAKS
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+    "vm.vfs_cache_pressure" = 50;
+    "vm.dirty_ratio" = 10;
+    "vm.dirty_background_ratio" = 5;
+    "vm.page-cluster" = 0;
+    "vm.compaction_proactiveness" = 0;
+    "kernel.nmi_watchdog" = 0;
+    "kernel.split_lock_mitigate" = 0;
+    "net.core.netdev_max_backlog" = 16384;
+  };
+  # ENABLE SPECIAL BOOT
   boot.plymouth.enable = true;
   # MAKE BOOT QUIETER
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
   # KERNEL PARAMS
   boot.kernelParams = [
     "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
+    "nvidia.NVreg_InitializeSystemMemoryAllocations=0"
+    "nvidia.NVreg_UsePageAttributeTable=1"
     "rd.systemd.show_status=false"
     "acpi_backlight=video"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
+    "amd_pstate=guided"
     "mitigations=off"
     "loglevel=3"
     "nowatchdog"
@@ -63,7 +90,6 @@ in {
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
-  networking.wireless.enable = true;
   networking.networkmanager.enable = true;
   # TIMEZONE
   time.timeZone = "America/Los_Angeles";
@@ -89,8 +115,6 @@ in {
   # KDE PLASMA
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  # HYPERLAND
-  programs.hyprland.enable = true;
   # CUPS PRINT SUPPORT
   services.printing.enable = true;
   # PIPEWIRE SOUND SUPPORT
@@ -130,15 +154,20 @@ in {
     packages = (with pkgs; [
       openconnect_openssl
       bitwarden-desktop
+      wayland-scanner
       datafusion-cli
       brightnessctl
       texliveFull
       libreoffice
       imagemagick
       fastfetch
+      geekbench
+      stress-ng
+      mangohud
       pciutils
       ripgrep
       discord
+      glmark2
       reaper
       zoxide
       vscode
@@ -150,6 +179,8 @@ in {
       ocaml
       gimp2
       slack
+      cmake
+      ninja
       tmux
       htop
       curl
@@ -261,9 +292,28 @@ in {
   environment.systemPackages = (with pkgs; [
     supergfxctl
     coreutils
+    scx.full
     asusctl
-    kitty
   ]);
+  # SCX SCHEDULER
+  systemd.services.scx = {
+    wantedBy = [
+      "multi-user.target"
+    ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.scx.full}/bin/scx_rusty";
+      Restart = "on-failure";
+    };
+  };
+  # BETTER MEMORY PRESSURE
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 10;
+  };
+  # FASTER DBUS
+  services.dbus.implementation = "broker";
   # SUID WRAPPERS
   programs.mtr.enable = true;
   programs.gnupg.agent = {
@@ -285,8 +335,6 @@ in {
   };
   # DOCKER ENABLE
   virtualisation.docker.enable = true;
-  # THERMAL CPU MANAGEMENT
-  services.thermald.enable = true;
   # MAX CPU PREFORMANCE
   services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
@@ -315,7 +363,7 @@ in {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode.fhs;
-      extensions = (with code-extensions; [
+      profiles.default.extensions = (with code-extensions; [
         shd101wyy.markdown-preview-enhanced
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
