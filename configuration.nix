@@ -74,6 +74,8 @@ in {
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  # KERNEL PACKAGES
+
   # X11 COMPATABILITY
   services.xserver.enable = true;
   services.xserver.xkb = {
@@ -277,6 +279,20 @@ in {
   };
   # DOCKER ENABLE
   virtualisation.docker.enable = true;
+  # THERMAL CPU MANAGEMENT
+  services.thermald.enable = true;
+  # MAX CPU PREFORMANCE
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "performance";
+      turbo = "auto";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
   # NIX VERSION
   system.stateVersion = "25.11";
 }
