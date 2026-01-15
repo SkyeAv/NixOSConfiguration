@@ -130,8 +130,8 @@ in {
     packages = (with pkgs; [
       openconnect_openssl
       bitwarden-desktop
-      brightnessctl
       datafusion-cli
+      brightnessctl
       texliveFull
       libreoffice
       imagemagick
@@ -241,7 +241,6 @@ in {
   };
   # ENABLE NVIDIA GPU
   services.xserver.videoDrivers = [
-    "modesetting"
     "amdgpu"
     "nvidia"
   ];
@@ -254,9 +253,9 @@ in {
       amdgpuBusId = "PCI:101:0:0";
     };
     powerManagement.finegrained = false;
-    open = false;
+    open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   # SYSTEM WIDE PACKAGES
   environment.systemPackages = (with pkgs; [
@@ -310,6 +309,7 @@ in {
   # VSCODE INSTALL
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode.fhs;
     extensions = (with code-extensions; [
       shd101wyy.markdown-preview-enhanced
       ms-toolsai.vscode-jupyter-cell-tags
