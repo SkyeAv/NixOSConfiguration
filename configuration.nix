@@ -7,7 +7,7 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
-   = vscode-with-extensions.override {
+  vscode = vscode-with-extensions.override {
     vscodeExtensions = (with code-extensions; [
       shd101wyy.markdown-preview-enhanced
       ms-toolsai.vscode-jupyter-cell-tags
