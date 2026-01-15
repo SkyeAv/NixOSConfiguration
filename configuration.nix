@@ -7,34 +7,6 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
-  vscode = vscode-with-extensions.override {
-    vscodeExtensions = (with code-extensions; [
-      shd101wyy.markdown-preview-enhanced
-      ms-toolsai.vscode-jupyter-cell-tags
-      ms-toolsai.vscode-jupyter-slideshow
-      ms-vscode-remote.remote-ssh-edit
-      ms-toolsai.jupyter-renderers
-      ms-vscode-remote.remote-ssh
-      yzhang.markdown-all-in-one
-      aaron-bond.better-comments
-      ms-vscode.remote-explorer
-      ms-toolsai.jupyter-keymap
-      tamasfe.even-better-toml
-      ocamllabs.ocaml-platform
-      johnpapa.vscode-peacock
-      james-yu.latex-workshop
-      mechatroner.rainbow-csv
-      oderwat.indent-rainbow
-      esbenp.prettier-vscode
-      ms-toolsai.jupyter
-      jnoortheen.nix-ide
-      redhat.vscode-yaml
-      ms-python.python
-      sdras.night-owl
-      eamodio.gitlens
-      zainchen.json
-    ]);
-  };
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -70,9 +42,20 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
   # KERNEL PACKAGES
   boot.kernelPackages = pkgs.linuxPackages_zen;
+  # ENABLE SPECIAL lBOOT
+  boot.plymouth.enable = true;
+  # MAKE BOOT QUIETER
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
   # KERNEL PARAMS
   boot.kernelParams = [
+    "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
+    "rd.systemd.show_status=false"
+    "acpi_backlight=video"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
     "mitigations=off"
+    "loglevel=3"
     "nowatchdog"
     "quiet"
     "splash"
@@ -147,6 +130,7 @@ in {
     packages = (with pkgs; [
       openconnect_openssl
       bitwarden-desktop
+      brightnessctl
       datafusion-cli
       texliveFull
       libreoffice
@@ -155,6 +139,7 @@ in {
       pciutils
       ripgrep
       discord
+      reaper
       zoxide
       vscode
       neovim
@@ -226,8 +211,6 @@ in {
       cudatoolkit
     ]) ++ (with nvtop; [
       nvidia
-    ]) ++ ([
-      vscode
     ]);
   };
   # BASHRC
@@ -306,6 +289,7 @@ in {
   # THERMAL CPU MANAGEMENT
   services.thermald.enable = true;
   # MAX CPU PREFORMANCE
+  services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
@@ -323,8 +307,40 @@ in {
     algorithm = "zstd";
     memoryPercent = 10;
   };
-  # ENABLE PRELOAD
-  services.preload.enable = true;
+  # VSCODE INSTALL
+  programs.vscode = {
+    enable = true;
+    extensions = (with code-extensions; [
+      shd101wyy.markdown-preview-enhanced
+      ms-toolsai.vscode-jupyter-cell-tags
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-vscode-remote.remote-ssh-edit
+      ms-toolsai.jupyter-renderers
+      ms-vscode-remote.remote-ssh
+      yzhang.markdown-all-in-one
+      aaron-bond.better-comments
+      ms-vscode.remote-explorer
+      ms-toolsai.jupyter-keymap
+      tamasfe.even-better-toml
+      ocamllabs.ocaml-platform
+      johnpapa.vscode-peacock
+      james-yu.latex-workshop
+      mechatroner.rainbow-csv
+      oderwat.indent-rainbow
+      esbenp.prettier-vscode
+      ms-toolsai.jupyter
+      jnoortheen.nix-ide
+      redhat.vscode-yaml
+      ms-python.python
+      sdras.night-owl
+      eamodio.gitlens
+      zainchen.json
+    ]);
+  };
+  # VSCODE USE WAYLAND
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # ACPILIGHT
+  hardware.acpilight.enable = true;
   # NIX VERSION
   system.stateVersion = "25.11";
 }
