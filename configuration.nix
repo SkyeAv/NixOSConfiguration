@@ -54,6 +54,8 @@ in {
   # BOOTLOADER
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # KERNEL PACKAGES
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
@@ -74,8 +76,6 @@ in {
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  # KERNEL PACKAGES
-
   # X11 COMPATABILITY
   services.xserver.enable = true;
   services.xserver.xkb = {
