@@ -321,7 +321,7 @@ in {
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 50;
+    memoryPercent = 25;
   };
   # ENABLE PRELOAD
   services.preload.enable = true;
