@@ -42,6 +42,13 @@ in {
   ];
   # ENABLE SUBSITUTERS
   nix.settings = {
+    auto-optimise-store = true;
+    max-jobs = "auto";
+    cores = 0;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [
       "https://cache.nixos.org"
       "https://cache.flox.dev"
@@ -51,11 +58,25 @@ in {
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
   };
+  # GARBAGE COLLECTOR
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
   # BOOTLOADER
+  boot.loader.timeout = 1;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # KERNEL PACKAGES
   boot.kernelPackages = pkgs.linuxPackages_zen;
+  # KERNEL PARAMS
+  boot.kernelParams = [
+    "mitigations=off"
+    "nowatchdog"
+    "quiet"
+    "splash"
+  ];
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
@@ -288,14 +309,22 @@ in {
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
-      governor = "performance";
-      turbo = "auto";
+      governor = "powersave";
+      turbo = "never";
     };
     charger = {
       governor = "performance";
       turbo = "auto";
     };
   };
+  # ADD ZRAM
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+  # ENABLE PRELOAD
+  services.preload.enable = true;
   # NIX VERSION
   system.stateVersion = "25.11";
 }
