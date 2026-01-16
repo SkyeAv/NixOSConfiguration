@@ -53,18 +53,6 @@ in {
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
-  # SYSCTL TWEAKS
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-    "vm.vfs_cache_pressure" = 50;
-    "vm.dirty_ratio" = 10;
-    "vm.dirty_background_ratio" = 5;
-    "vm.page-cluster" = 0;
-    "vm.compaction_proactiveness" = 0;
-    "kernel.nmi_watchdog" = 0;
-    "kernel.split_lock_mitigate" = 0;
-    "net.core.netdev_max_backlog" = 16384;
-  };
   # ENABLE SPECIAL BOOT
   boot.plymouth.enable = true;
   # MAKE BOOT QUIETER
@@ -73,15 +61,12 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
   # KERNEL PARAMS
   boot.kernelParams = [
-    "nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
-    "nvidia.NVreg_InitializeSystemMemoryAllocations=0"
     "nvidia.NVreg_UsePageAttributeTable=1"
     "rd.systemd.show_status=false"
     "acpi_backlight=video"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "amd_pstate=guided"
-    "mitigations=off"
     "loglevel=3"
     "nowatchdog"
     "quiet"
@@ -292,28 +277,14 @@ in {
   environment.systemPackages = (with pkgs; [
     supergfxctl
     coreutils
-    scx.full
     asusctl
   ]);
-  # SCX SCHEDULER
-  systemd.services.scx = {
-    wantedBy = [
-      "multi-user.target"
-    ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.scx.full}/bin/scx_rusty";
-      Restart = "on-failure";
-    };
-  };
   # BETTER MEMORY PRESSURE
   services.earlyoom = {
     enable = true;
     freeMemThreshold = 5;
     freeSwapThreshold = 10;
   };
-  # FASTER DBUS
-  services.dbus.implementation = "broker";
   # SUID WRAPPERS
   programs.mtr.enable = true;
   programs.gnupg.agent = {
@@ -352,7 +323,7 @@ in {
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 10;
+    memoryPercent = 25;
   };
   # HOME MANAGER
   home-manager.useGlobalPkgs = true;
