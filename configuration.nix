@@ -42,10 +42,15 @@ in {
   boot.loader.timeout = 1;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # CATCHYOS KERNEL
+  # OVERLAYS
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
+  # OVERRIDES
+  nixpkgs.config.packageOverrides = pkgs: {
+    libsForQt515 = pkgs.libsForQt5;
+  };
+  # CATCHY OS KERNEL
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
   # ANANICY PROCESS PRIORITY
   services.ananicy = {
@@ -144,7 +149,6 @@ in {
       "input"
     ];
     packages = (with pkgs; [
-      openconnect_openssl
       bitwarden-desktop
       wayland-scanner
       datafusion-cli
@@ -183,6 +187,7 @@ in {
       wget
       lshw
       gawk
+      vpnc
       git
       eza
       nim
