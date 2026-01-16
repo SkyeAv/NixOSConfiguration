@@ -69,8 +69,12 @@ in {
     "amd_pstate=guided"
     "loglevel=3"
     "nowatchdog"
-    "quiet"
     "splash"
+    "quiet"
+  ];
+  # KERNEL MODULES
+  boot.kernelModules = [
+    "btusb"
   ];
   # HOSTNAME
   networking.hostName = "skyetop";
@@ -113,6 +117,8 @@ in {
     jack.enable = true;
     wireplumber.enable = true;
   };
+  # ENABLE FIRMWARE
+  hardware.enableAllFirmware = true;
   # BLUETOOTH SUPPORT
   hardware.bluetooth = {
     enable = true;
@@ -135,6 +141,7 @@ in {
       "networkmanager"
       "docker"
       "wheel"
+      "input"
     ];
     packages = (with pkgs; [
       openconnect_openssl
@@ -153,6 +160,7 @@ in {
       ripgrep
       discord
       glmark2
+      zoom-us
       reaper
       zoxide
       vscode
@@ -161,6 +169,7 @@ in {
       heroic
       duckdb
       nimble
+      unzip
       ocaml
       gimp2
       slack
