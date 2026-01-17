@@ -79,6 +79,7 @@ in {
   ];
   # KERNEL MODULES
   boot.kernelModules = [
+    "uinput"
     "btusb"
   ];
   # HOSTNAME
@@ -156,10 +157,12 @@ in {
       texliveFull
       libreoffice
       imagemagick
+      pavucontrol
       fastfetch
       geekbench
       stress-ng
       mangohud
+      usbutils
       pciutils
       ripgrep
       discord
@@ -318,6 +321,7 @@ in {
       proton-ge-bin
     ];
   };
+  hardware.steam-hardware.enable = true;
   # DOCKER ENABLE
   virtualisation.docker.enable = true;
   # MAX CPU PREFORMANCE
