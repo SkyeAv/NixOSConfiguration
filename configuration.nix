@@ -170,7 +170,6 @@ in {
       zoom-us
       reaper
       zoxide
-      vscode
       neovim
       ffmpeg
       heroic
@@ -254,6 +253,7 @@ in {
       vim = "nvim";
       vi = "nvim";
       ls = "eza";
+      cd = "z";
     };
   };
   # FIREFOX INSTALL
@@ -310,7 +310,7 @@ in {
   };
   # ENABLE OPENSSH
   services.openssh.enable = true;
-  # DISABLE FIREWAL
+  # DISABLE FIREWALL
   networking.firewall.enable = false;
   # STEAM INSTALL
   programs.steam = {
