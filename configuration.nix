@@ -79,6 +79,8 @@ in {
   ];
   # KERNEL MODULES
   boot.kernelModules = [
+    "k10temp"
+    "nct6775"
     "uinput"
     "btusb"
   ];
@@ -164,6 +166,7 @@ in {
       mangohud
       usbutils
       pciutils
+      goverlay
       ripgrep
       discord
       glmark2
@@ -190,6 +193,7 @@ in {
       lshw
       gawk
       vpnc
+      btop
       git
       eza
       nim
@@ -343,6 +347,8 @@ in {
     algorithm = "zstd";
     memoryPercent = 25;
   };
+  # ACPILIGHT
+  hardware.acpilight.enable = true;
   # HOME MANAGER
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
@@ -382,8 +388,6 @@ in {
   };
   # VSCODE USE WAYLAND
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # ACPILIGHT
-  hardware.acpilight.enable = true;
   # NIX VERSION
   system.stateVersion = "25.11";
 }
