@@ -79,6 +79,7 @@ in {
   ];
   # KERNEL MODULES
   boot.kernelModules = [
+    "uvcvideo"
     "k10temp"
     "nct6775"
     "uinput"
@@ -160,6 +161,7 @@ in {
       libreoffice
       imagemagick
       pavucontrol
+      alsa-utils
       fastfetch
       geekbench
       stress-ng
@@ -257,7 +259,6 @@ in {
       vim = "nvim";
       vi = "nvim";
       ls = "eza";
-      cd = "z";
     };
   };
   # FIREFOX INSTALL
