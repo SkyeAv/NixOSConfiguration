@@ -266,6 +266,10 @@ in {
   services.asusd.enable = true;
   services.asusd.enableUserService = true;
   services.supergfxd.enable = true;
+  # SSD TRIM
+  services.fstrim.enable = true;
+  # NIX LD FOR BINARIES
+  programs.nix-ld.enable = true;
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
   # OPENGL
