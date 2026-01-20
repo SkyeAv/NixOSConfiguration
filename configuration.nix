@@ -68,6 +68,8 @@ in {
   boot.kernelParams = [
     "nvidia.NVreg_UsePageAttributeTable=1"
     "rd.systemd.show_status=false"
+    "transparent_hugepage=always"
+    "vm.overcommit_memory=1"
     "acpi_backlight=video"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
@@ -79,11 +81,13 @@ in {
   ];
   # KERNEL MODULES
   boot.kernelModules = [
+    "asus_wmi"
     "uvcvideo"
     "k10temp"
     "nct6775"
     "uinput"
     "btusb"
+    "jc42"  
   ];
   # HOSTNAME
   networking.hostName = "skyetop";
@@ -161,6 +165,7 @@ in {
       libreoffice
       imagemagick
       pavucontrol
+      claude-code
       alsa-utils
       fastfetch
       geekbench
@@ -170,9 +175,9 @@ in {
       pciutils
       goverlay
       ripgrep
-      discord
       glmark2
       zoom-us
+      vesktop
       reaper
       zoxide
       neovim
@@ -180,6 +185,7 @@ in {
       heroic
       duckdb
       nimble
+      ollama
       unzip
       ocaml
       gimp2
@@ -349,7 +355,7 @@ in {
   # ADD ZRAM
   zramSwap = {
     enable = true;
-    algorithm = "zstd";
+    algorithm = "lz4";
     memoryPercent = 25;
   };
   # ACPILIGHT
