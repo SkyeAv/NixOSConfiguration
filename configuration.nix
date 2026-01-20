@@ -354,6 +354,10 @@ in {
   };
   # ACPILIGHT
   hardware.acpilight.enable = true;
+  # FONTS
+  fonts.packages = (with pkgs; [
+    corefonts
+  ]);
   # HOME MANAGER
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
