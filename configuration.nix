@@ -46,10 +46,6 @@ in {
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
-  # OVERRIDES
-  nixpkgs.config.packageOverrides = pkgs: {
-    libsForQt515 = pkgs.libsForQt5;
-  };
   # CATCHY OS KERNEL
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
   # ANANICY PROCESS PRIORITY
@@ -93,6 +89,9 @@ in {
   networking.hostName = "skyetop";
   # NETWORKING
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openconnect
+  ];
   # TIMEZONE
   time.timeZone = "America/Los_Angeles";
   # LOCATION
@@ -146,6 +145,12 @@ in {
   };
   # TOUCHPAD SUPPORT
   services.libinput.enable = true;
+  # NM OPENCONNECT USER
+  users.users.nm-openconnect = {
+    isSystemUser = true;
+    group = "nm-openconnect";
+  };
+  users.groups.nm-openconnect = {};
   # USER ACCOUNT
   users.users.skyeav = {
     isNormalUser = true;
@@ -170,6 +175,7 @@ in {
       fastfetch
       geekbench
       stress-ng
+      xdg-utils
       mangohud
       usbutils
       pciutils
@@ -208,11 +214,12 @@ in {
       bat
       fd
       jq
-    ]) ++ (with py; [
+    ]) ++ [(pkgs.python313.withPackages (ps: with ps; [
       sentence-transformers
       sqlite-utils
       scikit-learn
       transformers
+      jupyter-core
       onnxruntime
       matplotlib
       setuptools
@@ -222,6 +229,7 @@ in {
       rapidfuzz
       ipykernel
       lightgbm
+      notebook
       seaborn
       optimum
       fastapi
@@ -232,7 +240,7 @@ in {
       polars
       mkdocs
       pandas
-      python
+      polars
       flake8
       scipy
       sympy
@@ -243,13 +251,15 @@ in {
       zstd
       shap
       peft
+      pipx
       pip
-    ]) ++ (with caml; [
+    ]))] ++ (with caml; [
       cmdliner
     ]) ++ (with beam; [
       elixir
     ]) ++ (with plasma; [
       kdeconnect-kde
+      kzones
       kate
     ]) ++ (with cuda; [
       cudatoolkit
@@ -307,9 +317,14 @@ in {
   };
   # SYSTEM WIDE PACKAGES
   environment.systemPackages = (with pkgs; [
+    networkmanager-openconnect
     supergfxctl
+    openconnect
+    xmlstarlet
     coreutils
     asusctl
+  ]) ++ ([
+    inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
   ]);
   # BETTER MEMORY PRESSURE
   services.earlyoom = {
