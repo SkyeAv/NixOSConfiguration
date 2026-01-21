@@ -3,6 +3,7 @@ let
   code-extensions = pkgs.vscode-extensions;
   beam = pkgs.beamMinimal28Packages;
   nvtop = pkgs.nvtopPackages;
+  caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
 in {
@@ -251,9 +252,9 @@ in {
       peft
       pipx
       pip
-    ]))] ++ [(pkgs.ocaml.withPackages (ops: with ops; [
+    ]))] ++ (with caml; [
       cmdliner
-    ]))] ++ (with beam; [
+    ]) ++ (with beam; [
       elixir
     ]) ++ (with plasma; [
       kdeconnect-kde
