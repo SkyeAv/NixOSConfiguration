@@ -175,6 +175,7 @@ in {
       geekbench
       stress-ng
       xdg-utils
+      chemtool
       mangohud
       usbutils
       pciutils
@@ -258,6 +259,7 @@ in {
       elixir
     ]) ++ (with plasma; [
       kdeconnect-kde
+      libkscreen
       kzones
       kate
     ]) ++ (with cuda; [
@@ -396,6 +398,7 @@ in {
         ms-vscode-remote.remote-ssh
         yzhang.markdown-all-in-one
         aaron-bond.better-comments
+        pkief.material-icon-theme
         ms-vscode.remote-explorer
         ms-toolsai.jupyter-keymap
         tamasfe.even-better-toml
@@ -405,6 +408,8 @@ in {
         mechatroner.rainbow-csv
         oderwat.indent-rainbow
         esbenp.prettier-vscode
+        ms-vscode.live-server
+        usernamehw.errorlens
         ms-toolsai.jupyter
         jnoortheen.nix-ide
         redhat.vscode-yaml
