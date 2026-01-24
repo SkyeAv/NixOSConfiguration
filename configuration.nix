@@ -2,6 +2,7 @@
 let
   code-extensions = pkgs.vscode-extensions;
   beam = pkgs.beamMinimal28Packages;
+  py = pkgs.python313Packages;
   nvtop = pkgs.nvtopPackages;
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
@@ -43,6 +44,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
   # OVERLAYS
   nixpkgs.overlays = [
+    (final: prev: {libsForQt515 = prev.libsForQt5;})
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
   # CATCHY OS KERNEL
@@ -88,9 +90,6 @@ in {
   networking.hostName = "skyetop";
   # NETWORKING
   networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openconnect
-  ];
   # TIMEZONE
   time.timeZone = "America/Los_Angeles";
   # LOCATION
@@ -170,6 +169,7 @@ in {
       imagemagick
       pavucontrol
       claude-code
+      openconnect
       alsa-utils
       fastfetch
       geekbench
@@ -192,12 +192,14 @@ in {
       duckdb
       nimble
       ollama
+      libgcc
       unzip
       ocaml
       gimp2
       slack
       cmake
       ninja
+      ngrok
       tmux
       htop
       curl
@@ -208,12 +210,14 @@ in {
       gawk
       vpnc
       btop
+      gcc
       git
       eza
       nim
       bat
       fd
       jq
+      go
     ]) ++ [(pkgs.python313.withPackages (ps: with ps; [
       sentence-transformers
       sqlite-utils
@@ -248,6 +252,7 @@ in {
       typer
       numpy
       wheel
+      lxml
       zstd
       shap
       peft
@@ -272,6 +277,8 @@ in {
   programs.bash = {
     enable = true;
     shellAliases = {
+      openconnect-sso = "QT_QPA_PLATFORM=xcb QT_QUICK_BACKEND=software openconnect-sso";
+      nixos-load = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
       top = "htop";
       vim = "nvim";
       vi = "nvim";
@@ -318,7 +325,6 @@ in {
   };
   # SYSTEM WIDE PACKAGES
   environment.systemPackages = (with pkgs; [
-    networkmanager-openconnect
     supergfxctl
     openconnect
     xmlstarlet
@@ -326,6 +332,7 @@ in {
     asusctl
   ]) ++ ([
     inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.openconnect-sso.packages.${pkgs.stdenv.hostPlatform.system}.openconnect-sso
   ]);
   # BETTER MEMORY PRESSURE
   services.earlyoom = {
