@@ -182,6 +182,7 @@ in {
       glmark2
       zoom-us
       vesktop
+      chatbox
       reaper
       zoxide
       neovim
@@ -189,7 +190,6 @@ in {
       heroic
       duckdb
       nimble
-      ollama
       libgcc
       unzip
       ocaml
@@ -276,7 +276,7 @@ in {
     enable = true;
     shellAliases = {
       openconnect-sso = "QT_QPA_PLATFORM=xcb QT_QUICK_BACKEND=software openconnect-sso";
-      os-reload = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
+      os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
       top = "htop";
       vim = "nvim";
       vi = "nvim";
@@ -291,6 +291,11 @@ in {
   services.supergfxd.enable = true;
   # SSD TRIM
   services.fstrim.enable = true;
+  # OLLAMA DAEMON
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+  };
   # NIX LD FOR BINARIES
   programs.nix-ld.enable = true;
   # ALLOW UNFREE PACKAGES
