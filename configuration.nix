@@ -44,7 +44,6 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
   # OVERLAYS
   nixpkgs.overlays = [
-    (final: prev: {libsForQt515 = prev.libsForQt5;})
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
   # CATCHY OS KERNEL
@@ -67,7 +66,7 @@ in {
     "rd.systemd.show_status=false"
     "transparent_hugepage=always"
     "vm.overcommit_memory=1"
-    "acpi_backlight=video"
+    "acpi_backlight=native"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "amd_pstate=guided"
@@ -143,22 +142,20 @@ in {
   };
   # TOUCHPAD SUPPORT
   services.libinput.enable = true;
-  # NM OPENCONNECT USER
-  users.users.nm-openconnect = {
-    isSystemUser = true;
-    group = "nm-openconnect";
-  };
-  users.groups.nm-openconnect = {};
   # USER ACCOUNT
   users.users.skyeav = {
     isNormalUser = true;
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "podman"
       "docker"
       "wheel"
       "input"
+      "video"
     ];
+    subGidRanges = [{count = 65536; startGid = 1000;}];
+    subUidRanges = [{count = 65536; startUid = 1000;}];
     packages = (with pkgs; [
       bitwarden-desktop
       wayland-scanner
@@ -172,6 +169,7 @@ in {
       openconnect
       alsa-utils
       fastfetch
+      distrobox
       geekbench
       stress-ng
       xdg-utils
@@ -278,7 +276,7 @@ in {
     enable = true;
     shellAliases = {
       openconnect-sso = "QT_QPA_PLATFORM=xcb QT_QUICK_BACKEND=software openconnect-sso";
-      nixos-load = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
+      os-reload = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
       top = "htop";
       vim = "nvim";
       vi = "nvim";
@@ -332,7 +330,6 @@ in {
     asusctl
   ]) ++ ([
     inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.openconnect-sso.packages.${pkgs.stdenv.hostPlatform.system}.openconnect-sso
   ]);
   # BETTER MEMORY PRESSURE
   services.earlyoom = {
@@ -360,8 +357,11 @@ in {
     ];
   };
   hardware.steam-hardware.enable = true;
-  # DOCKER ENABLE
-  virtualisation.docker.enable = true;
+  # PODMAN ENABLE
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
   # MAX CPU PREFORMANCE
   services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
