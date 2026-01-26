@@ -11,9 +11,7 @@
   };
   outputs = inputs @ {self, nixpkgs, flake-parts, nix-cachyos-kernel, home-manager, kwin-effects-forceblur, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = [
-        "x86_64-linux"
-      ];
+      systems = ["x86_64-linux"];
       flake = {
         nixosConfigurations.skyeav = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

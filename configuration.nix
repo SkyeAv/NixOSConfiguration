@@ -7,6 +7,13 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
+  cuda-py = pkgs.python313.override {
+    packageOverrides = self: super: {
+      torch = super.torch-bin;
+      torchvision = super.torchvision-bin;
+      torchaudio = super.torchaudio-bin;
+    };
+  };
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -17,17 +24,22 @@ in {
     auto-optimise-store = true;
     max-jobs = "auto";
     cores = 0;
+    download-buffer-size = 4294967296;
     experimental-features = [
       "nix-command"
       "flakes"
     ];
     substituters = [
       "https://cache.nixos.org"
+      "https://cuda-maintainers.cachix.org"
+      "https://cache.nixos-cuda.org"
       "https://cache.flox.dev"
       "https://attic.xuyh0120.win/lantian"
     ];
     trusted-public-keys = [
       "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs"
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
@@ -45,6 +57,13 @@ in {
   # OVERLAYS
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
+    (final: prev: {
+      python313Packages = prev.python313Packages // {
+        torch = prev.python313Packages.torch-bin;
+        torchvision = prev.python313Packages.torchvision-bin;
+        torchaudio = prev.python313Packages.torchaudio-bin;
+      };
+    })
   ];
   # CATCHY OS KERNEL
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
@@ -148,6 +167,7 @@ in {
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "render"
       "podman"
       "docker"
       "wheel"
@@ -173,11 +193,13 @@ in {
       geekbench
       stress-ng
       xdg-utils
+      lmstudio
       chemtool
       mangohud
       usbutils
       pciutils
       goverlay
+      nix-diff
       ripgrep
       glmark2
       zoom-us
@@ -216,26 +238,37 @@ in {
       fd
       jq
       go
-    ]) ++ [(pkgs.python313.withPackages (ps: with ps; [
+    ]) ++ [(cuda-py.withPackages (ps: with ps; [
       sentence-transformers
+      sentencepiece
+      uncertainties
       sqlite-utils
       scikit-learn
       transformers
       jupyter-core
+      transformers
+      torchvision
+      safetensors
       onnxruntime
+      tokenizers
       matplotlib
+      sqlalchemy
       setuptools
       playwright
       accelerate
+      torchaudio
       biopython
       rapidfuzz
       ipykernel
-      lightgbm
+      torchsde
       notebook
+      alembic
+      aiohttp
       seaborn
       optimum
       fastapi
       pyexcel
+      pillow
       pyyaml
       duckdb
       orjson
@@ -244,18 +277,23 @@ in {
       pandas
       polars
       flake8
+      einops
+      psutil
+      torch
       scipy
       sympy
-      torch
       typer
       numpy
       wheel
+      tqdm
+      yarl
       lxml
       zstd
       shap
       peft
       pipx
       pip
+      av
     ]))] ++ (with caml; [
       cmdliner
     ]) ++ (with beam; [
@@ -283,6 +321,10 @@ in {
       ls = "eza";
     };
   };
+  # ENVIRONMENT VARIABLES
+  environment.variables = {
+    CUDA_PATH = "${pkgs.cudatoolkit}";
+  };
   # FIREFOX INSTALL
   programs.firefox.enable = true;
   # ASUS LAPTOPS
@@ -300,6 +342,7 @@ in {
   programs.nix-ld.enable = true;
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
   # OPENGL
   hardware.graphics = {
     enable = true;
