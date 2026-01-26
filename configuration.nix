@@ -108,6 +108,9 @@ in {
   networking.hostName = "skyetop";
   # NETWORKING
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [
+    pkgs.networkmanager-openconnect
+  ];
   # TIMEZONE
   time.timeZone = "America/Los_Angeles";
   # LOCATION
@@ -200,6 +203,7 @@ in {
       pciutils
       goverlay
       nix-diff
+      opencode
       ripgrep
       glmark2
       zoom-us
@@ -213,6 +217,7 @@ in {
       duckdb
       nimble
       libgcc
+      tiled
       unzip
       ocaml
       gimp2
@@ -230,11 +235,14 @@ in {
       gawk
       vpnc
       btop
+      love
       gcc
       git
       eza
       nim
       bat
+      lua
+      bun
       fd
       jq
       go
@@ -308,18 +316,6 @@ in {
     ]) ++ (with nvtop; [
       nvidia
     ]);
-  };
-  # BASHRC
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      openconnect-sso = "QT_QPA_PLATFORM=xcb QT_QUICK_BACKEND=software openconnect-sso";
-      os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
-      top = "htop";
-      vim = "nvim";
-      vi = "nvim";
-      ls = "eza";
-    };
   };
   # ENVIRONMENT VARIABLES
   environment.variables = {
@@ -440,6 +436,23 @@ in {
   home-manager.useUserPackages = true;
   home-manager.users.skyeav = {
     home.stateVersion = "25.11";
+    # BASH INSTALL
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
+        top = "htop";
+        vim = "nvim";
+        vi = "nvim";
+        ls = "eza";
+        cd = "z";
+      };
+    };
+    # ZOXIDE INSTALL
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration= true;
+    };
     # VSCODE INSTALL
     programs.vscode = {
       enable = true;
@@ -472,6 +485,7 @@ in {
         sdras.night-owl
         eamodio.gitlens
         zainchen.json
+        sumneko.lua
       ]);
     };
   };
