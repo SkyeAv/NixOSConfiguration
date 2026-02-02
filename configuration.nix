@@ -7,6 +7,7 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
+  np = pkgs.nodePackages;
   cuda-py = pkgs.python313.override {
     packageOverrides = self: super: {
       torch = super.torch-bin;
@@ -104,6 +105,10 @@ in {
     "btusb"
     "jc42"  
   ];
+  # KERNEL MODULE BLACKLIST
+  boot.blacklistedKernelModules = [
+    "snd_hda_codec_nvhdmi"
+  ];
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
@@ -191,11 +196,13 @@ in {
       claude-code
       openconnect
       alsa-utils
+      pkg-config
       fastfetch
       distrobox
       geekbench
       stress-ng
       xdg-utils
+      streamrip
       lmstudio
       chemtool
       mangohud
@@ -213,10 +220,12 @@ in {
       zoxide
       neovim
       ffmpeg
+      libzip
       heroic
       duckdb
       nimble
       libgcc
+      qrcode
       tiled
       unzip
       ocaml
@@ -236,13 +245,14 @@ in {
       vpnc
       btop
       love
+      zip
       gcc
       git
       eza
       nim
       bat
-      lua
       bun
+      lua
       fd
       jq
       go
@@ -315,6 +325,8 @@ in {
       cudatoolkit
     ]) ++ (with nvtop; [
       nvidia
+    ]) ++ (with np; [
+      nodejs
     ]);
   };
   # ENVIRONMENT VARIABLES
@@ -375,12 +387,6 @@ in {
   ]) ++ ([
     inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
   ]);
-  # BETTER MEMORY PRESSURE
-  services.earlyoom = {
-    enable = true;
-    freeMemThreshold = 5;
-    freeSwapThreshold = 10;
-  };
   # SUID WRAPPERS
   programs.mtr.enable = true;
   programs.gnupg.agent = {
