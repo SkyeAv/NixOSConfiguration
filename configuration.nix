@@ -211,6 +211,7 @@ in {
       goverlay
       nix-diff
       opencode
+      qrencode
       ripgrep
       glmark2
       zoom-us
@@ -225,7 +226,6 @@ in {
       duckdb
       nimble
       libgcc
-      qrcode
       tiled
       unzip
       ocaml
@@ -256,6 +256,7 @@ in {
       fd
       jq
       go
+      gh
     ]) ++ [(cuda-py.withPackages (ps: with ps; [
       sentence-transformers
       sentencepiece
@@ -297,6 +298,7 @@ in {
       flake8
       einops
       psutil
+      lmfit
       torch
       scipy
       sympy
