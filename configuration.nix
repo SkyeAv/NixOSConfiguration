@@ -348,6 +348,15 @@ in {
     enable = true;
     package = pkgs.ollama-cuda;
   };
+  # FCRON
+  services.fcron = {
+    enable = true;
+    systab = ''
+      # RESET VIBE CODE LIMITS
+      @ 6:00 & bootrun(true) echo "Hi" | claude --print
+      @ 6:00 & bootrun(true) opencode run "Hi"
+    '';
+  };
   # NIX LD FOR BINARIES
   programs.nix-ld.enable = true;
   # ALLOW UNFREE PACKAGES
