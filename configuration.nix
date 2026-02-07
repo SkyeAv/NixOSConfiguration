@@ -188,6 +188,7 @@ in {
       bitwarden-desktop
       wayland-scanner
       datafusion-cli
+      podman-desktop
       brightnessctl
       texliveFull
       libreoffice
@@ -226,6 +227,7 @@ in {
       duckdb
       nimble
       libgcc
+      psmisc
       tiled
       unzip
       ocaml
@@ -245,6 +247,9 @@ in {
       vpnc
       btop
       love
+      tree
+      duf
+      fzf
       zip
       gcc
       git
@@ -458,10 +463,14 @@ in {
       enable = true;
       shellAliases = {
         os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
+        ssh-skyemac = "ssh skyeav@192.168.1.6";
+        ps = "procs";
         top = "htop";
         vim = "nvim";
         vi = "nvim";
+        du = "dust";
         ls = "eza";
+        df = "duf";
         cd = "z";
       };
     };
