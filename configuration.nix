@@ -216,6 +216,7 @@ in {
       stress-ng
       xdg-utils
       streamrip
+      goose-cli
       lmstudio
       chemtool
       mangohud
@@ -299,6 +300,7 @@ in {
       ipykernel
       torchsde
       notebook
+      fastmcp
       alembic
       aiohttp
       seaborn
