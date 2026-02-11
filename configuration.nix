@@ -187,6 +187,7 @@ in {
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "ydotool"
       "render"
       "podman"
       "docker"
@@ -199,6 +200,7 @@ in {
     packages = (with pkgs; [
       whisper-cpp-vulkan
       bitwarden-desktop
+      telegram-desktop
       wayland-scanner
       datafusion-cli
       podman-desktop
@@ -220,6 +222,7 @@ in {
       xdg-utils
       streamrip
       goose-cli
+      libnotify
       lmstudio
       chemtool
       mangohud
@@ -475,11 +478,33 @@ in {
   fonts.packages = (with pkgs; [
     corefonts
   ]);
+  # YDOTOOL
+  programs.ydotool.enable = true;
+  # USER DEFINED SERVICES
+  systemd.user.services = {
+    hyprvoice = {
+      description = "Hyprvoice service";
+      wantedBy = ["default.target"];
+      path = [
+        "/etc/profiles/per-user/skyeav"
+        "/run/current-system/sw"
+        "/etc/systemd/system"
+      ];
+      serviceConfig = {
+        ExecStart = "%h/go/bin/hyprvoice serve";
+        PassEnvironment = "WAYLAND_DISPLAY XDG_RUNTIME_DIR HYPRLAND_INSTANCE_SIGNATURE";
+      };
+    };
+  };
   # HOME MANAGER
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.skyeav = {
     home.stateVersion = "25.11";
+    # APPEND TO PATH
+    home.sessionPath = [
+      "$HOME/go/bin"
+    ];
     # BASH INSTALL
     programs.bash = {
       enable = true;
