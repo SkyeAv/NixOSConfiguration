@@ -298,6 +298,7 @@ in {
       biopython
       rapidfuzz
       ipykernel
+      fastexcel
       torchsde
       notebook
       fastmcp
@@ -512,6 +513,7 @@ in {
         ms-toolsai.jupyter-keymap
         tamasfe.even-better-toml
         ocamllabs.ocaml-platform
+        grapecity.gc-excelviewer
         johnpapa.vscode-peacock
         james-yu.latex-workshop
         mechatroner.rainbow-csv
