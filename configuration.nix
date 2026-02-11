@@ -268,6 +268,7 @@ in {
       gawk
       vpnc
       btop
+      dust
       love
       tree
       duf
