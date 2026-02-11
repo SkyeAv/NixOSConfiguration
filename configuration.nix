@@ -491,10 +491,7 @@ in {
         "/run/current-system/sw"
         "/etc/systemd/system"
       ];
-      serviceConfig = {
-        ExecStart = "%h/go/bin/hyprvoice serve";
-        PassEnvironment = "WAYLAND_DISPLAY XDG_RUNTIME_DIR HYPRLAND_INSTANCE_SIGNATURE";
-      };
+      serviceConfig = {ExecStart = "%h/go/bin/hyprvoice serve";};
     };
   };
   # HOME MANAGER
