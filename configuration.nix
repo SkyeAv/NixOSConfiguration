@@ -197,11 +197,14 @@ in {
     subGidRanges = [{count = 65536; startGid = 1000;}];
     subUidRanges = [{count = 65536; startUid = 1000;}];
     packages = (with pkgs; [
+      whisper-cpp-vulkan
       bitwarden-desktop
       wayland-scanner
       datafusion-cli
       podman-desktop
       brightnessctl
+      appimage-run
+      wl-clipboard
       texliveFull
       libreoffice
       imagemagick
@@ -231,6 +234,7 @@ in {
       zoom-us
       vesktop
       chatbox
+      xdotool
       reaper
       zoxide
       neovim
@@ -249,6 +253,8 @@ in {
       cmake
       ninja
       ngrok
+      wtype
+      file
       tmux
       htop
       curl
