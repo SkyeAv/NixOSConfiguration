@@ -481,6 +481,9 @@ in {
   ]);
   # YDOTOOL
   programs.ydotool.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="ydotool", OPTIONS+="static_node=uinput"
+  '';
   # USER DEFINED SERVICES
   systemd.user.services = {
     hyprvoice = {
@@ -494,7 +497,7 @@ in {
       serviceConfig.ExecStart = "%h/go/bin/hyprvoice serve";
     };
     ydotool = {
-      description = "ydotool daemon";
+      description = "Ydotool service";
       wantedBy = ["default.target"];
       path = [
         "/etc/profiles/per-user/skyeav"
