@@ -491,7 +491,17 @@ in {
         "/run/current-system/sw"
         "/etc/systemd/system"
       ];
-      serviceConfig = {ExecStart = "%h/go/bin/hyprvoice serve";};
+      serviceConfig.ExecStart = "%h/go/bin/hyprvoice serve";
+    };
+    ydotool = {
+      description = "ydotool daemon";
+      wantedBy = ["default.target"];
+      path = [
+        "/etc/profiles/per-user/skyeav"
+        "/run/current-system/sw"
+        "/etc/systemd/system"
+      ];
+      serviceConfig.ExecStart = "${pkgs.ydotool}/bin/ydotoold";
     };
   };
   # HOME MANAGER
