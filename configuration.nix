@@ -245,6 +245,7 @@ in {
       vesktop
       chatbox
       xdotool
+      pyright
       reaper
       zoxide
       neovim
@@ -320,7 +321,6 @@ in {
       fastexcel
       torchsde
       notebook
-      pyright
       fastmcp
       alembic
       aiohttp
