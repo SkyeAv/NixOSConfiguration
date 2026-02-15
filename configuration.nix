@@ -397,7 +397,9 @@ in {
       # RESET VIBE CODE LIMITS
       @ 6:00 & bootrun(true) echo "Hi" | claude --print
       @ 6:00 & bootrun(true) opencode run "Hi"
-    '';
+      # OS BACKUP TO LOCAL SERVER
+      @ 20:00 & bootrun(true) rsync -av --no-compress --exclude="Backups" --delete /home/skyeav/ skyeav@192.168.1.6:/Users/skyeav/Backups/SkyeTop
+    ''
   };
   # NIX LD FOR BINARIES
   programs.nix-ld.enable = true;
@@ -553,6 +555,8 @@ in {
       enable = true;
       package = pkgs.vscode.fhs;
       profiles.default.extensions = (with code-extensions; [
+        # MANYALLY SET MATERIAL ICON THEME AND NIGHT OWL THEME
+        # MANUALLY ADD WINDSURF AND NIMLANG
         shd101wyy.markdown-preview-enhanced
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
