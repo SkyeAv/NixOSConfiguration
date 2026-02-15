@@ -177,6 +177,12 @@ in {
   };
   # TOUCHPAD SUPPORT
   services.libinput.enable = true;
+  # BETTER MEMORY PRESSURE
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 10;
+  };
   # USER ACCOUNT
   users.users.skyeav = {
     isNormalUser = true;
@@ -209,8 +215,11 @@ in {
       pavucontrol
       claude-code
       openconnect
+      aircrack-ng
       alsa-utils
       pkg-config
+      metasploit
+      wireshark
       fastfetch
       distrobox
       geekbench
@@ -219,6 +228,8 @@ in {
       streamrip
       goose-cli
       libnotify
+      qpwgraph
+      foremost
       lmstudio
       chemtool
       mangohud
@@ -244,6 +255,7 @@ in {
       nimble
       libgcc
       psmisc
+      hping
       tiled
       unzip
       ocaml
@@ -253,6 +265,7 @@ in {
       ninja
       ngrok
       wtype
+      nmap
       file
       tmux
       htop
