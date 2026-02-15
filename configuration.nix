@@ -256,6 +256,7 @@ in {
       nimble
       libgcc
       psmisc
+      rsync
       hping
       tiled
       unzip
