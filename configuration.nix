@@ -105,10 +105,6 @@ in {
     "btusb"
     "jc42"  
   ];
-  # KERNEL MODULE BLACKLIST
-  boot.blacklistedKernelModules = [
-    "snd_hda_codec_nvhdmi"
-  ];
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
