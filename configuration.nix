@@ -320,6 +320,7 @@ in {
       fastexcel
       torchsde
       notebook
+      pyright
       fastmcp
       alembic
       aiohttp
@@ -575,11 +576,13 @@ in {
         ms-toolsai.jupyter
         jnoortheen.nix-ide
         redhat.vscode-yaml
+        ms-pyright.pyright
         ms-python.python
         sdras.night-owl
         eamodio.gitlens
         zainchen.json
         sumneko.lua
+        golang.go
       ]);
     };
   };
