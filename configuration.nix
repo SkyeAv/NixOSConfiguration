@@ -322,6 +322,7 @@ in {
       fastexcel
       torchsde
       notebook
+      networkx
       fastmcp
       alembic
       aiohttp
@@ -340,6 +341,7 @@ in {
       flake8
       einops
       psutil
+      plotly
       lmfit
       torch
       scipy
@@ -399,7 +401,7 @@ in {
       @ 6:00 & bootrun(true) opencode run "Hi"
       # OS BACKUP TO LOCAL SERVER
       @ 20:00 & bootrun(true) rsync -av --no-compress --exclude="Backups" --delete /home/skyeav/ skyeav@192.168.1.6:/Users/skyeav/Backups/SkyeTop
-    ''
+    '';
   };
   # NIX LD FOR BINARIES
   programs.nix-ld.enable = true;
