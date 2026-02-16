@@ -89,7 +89,7 @@ in {
     "acpi_backlight=native"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
-    "amd_pstate=guided"
+    "amd_pstate=active"
     "loglevel=3"
     "nowatchdog"
     "splash"
@@ -471,19 +471,8 @@ in {
     enable = true;
     dockerCompat = true;
   };
-  # MAX CPU PREFORMANCE
-  services.power-profiles-daemon.enable = false;
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
-  };
+  # POWER PROFILES DAEMON
+  services.power-profiles-daemon.enable = true;
   # ADD ZRAM
   zramSwap = {
     enable = true;
@@ -557,8 +546,8 @@ in {
     # VSCODE INSTALL
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
-      profiles.default.extensions = (with code-extensions; [
+      package = pkgs.vscode;
+      extensions = (with code-extensions; [
         # MANYALLY SET MATERIAL ICON THEME AND NIGHT OWL THEME
         # MANUALLY ADD WINDSURF AND NIMLANG
         shd101wyy.markdown-preview-enhanced
