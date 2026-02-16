@@ -299,6 +299,7 @@ in {
       gh
     ]) ++ [(cuda-py.withPackages (ps: with ps; [
       sentence-transformers
+      backports-zstd
       sentencepiece
       uncertainties
       sqlite-utils
@@ -330,6 +331,7 @@ in {
       optimum
       fastapi
       pyexcel
+      pyarrow
       pillow
       pyyaml
       duckdb
