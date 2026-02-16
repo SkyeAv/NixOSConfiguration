@@ -153,9 +153,7 @@ in {
         "10-disable-suspend" = {
           "monitor.alsa.rules" = [{
             matches = [{"node.name" = "~alsa_output.*";}];
-            actions.update-props = {
-              "session.suspend-timeout-seconds" = 0;
-            };
+            actions.update-props = {"session.suspend-timeout-seconds" = 0;};
           }];
         };
       };
@@ -237,7 +235,6 @@ in {
       pciutils
       goverlay
       nix-diff
-      opencode
       qrencode
       ripgrep
       glmark2
@@ -344,6 +341,7 @@ in {
       einops
       psutil
       plotly
+      pyvis
       lmfit
       torch
       scipy
@@ -375,7 +373,10 @@ in {
       nvidia
     ]) ++ (with np; [
       nodejs
-    ]);
+    ]) ++ [(pkgs.writeShellScriptBin "opencode" ''
+      export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+      exec ${pkgs.opencode}/bin/opencode "$@"
+    '')];
   };
   # ENVIRONMENT VARIABLES
   environment.variables = {
@@ -547,13 +548,14 @@ in {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = (with code-extensions; [
+      profiles.default.extensions = (with code-extensions; [
         # MANYALLY SET MATERIAL ICON THEME AND NIGHT OWL THEME
         # MANUALLY ADD WINDSURF AND NIMLANG
         shd101wyy.markdown-preview-enhanced
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
         ms-vscode-remote.remote-ssh-edit
+        github.vscode-github-actions
         ms-toolsai.jupyter-renderers
         ms-vscode-remote.remote-ssh
         yzhang.markdown-all-in-one
