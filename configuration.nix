@@ -67,7 +67,7 @@ in {
     })
   ];
   # CATCHY OS KERNEL
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
   # ANANICY PROCESS PRIORITY
   services.ananicy = {
     enable = true;
@@ -264,6 +264,7 @@ in {
       ninja
       ngrok
       wtype
+      procs
       nmap
       file
       tmux
