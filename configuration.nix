@@ -82,10 +82,9 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
   # KERNEL PARAMS
   boot.kernelParams = [
-    "nvidia.NVreg_UsePageAttributeTable=1"
     "rd.systemd.show_status=false"
     "transparent_hugepage=always"
-    "vm.overcommit_memory=1"
+    "numa_balancing=disable"
     "acpi_backlight=native"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
@@ -105,6 +104,25 @@ in {
     "btusb"
     "jc42"  
   ];
+  # SYSCTL PARAMS
+  boot.kernel.sysctl = {
+    "vm.nr_overcommit_hugepages" = 256;
+    "vm.compaction_proactiveness" = 0;
+    "vm.dirty_background_ratio" = 5;
+    "vm.vfs_cache_pressure" = 50;
+    "vm.overcommit_memory" = 1;
+    "vm.nr_hugepages" = 512;
+    "vm.page-cluster" = 3;
+    "vm.dirty_ratio" = 15;
+    "vm.swappiness" = 10;
+  };
+  # NVIDIA OPTIMIZATIONS
+  boot.extraModprobeConfig = ''
+    options nvidia NVreg_RegistryDwords="PeerMappingOverride=1"
+    options nvidia NVreg_UsePageAttributeTable=1
+    options nvidia NVreg_EnableGpuFirmware=1
+    options nvidia_drm modeset=1 fbdev=1
+  '';
   # HOSTNAME
   networking.hostName = "skyetop";
   # NETWORKING
@@ -198,7 +216,6 @@ in {
     subGidRanges = [{count = 65536; startGid = 1000;}];
     subUidRanges = [{count = 65536; startUid = 1000;}];
     packages = (with pkgs; [
-      whisper-cpp-vulkan
       bitwarden-desktop
       telegram-desktop
       wayland-scanner
@@ -207,6 +224,7 @@ in {
       brightnessctl
       appimage-run
       wl-clipboard
+      whisper-cpp
       texliveFull
       libreoffice
       imagemagick
@@ -395,6 +413,12 @@ in {
   services.ollama = {
     enable = true;
     package = pkgs.ollama-cuda;
+    environmentVariables = {
+      OLLAMA_MAX_LOADED_MODELS = "1";
+      OLLAMA_KV_CACHE_TYPE = "q4_0";
+      OLLAMA_FLASH_ATTENTION = "1";
+      OLLAMA_KEEP_ALIVE = "-1";
+    };
   };
   # FCRON
   services.fcron = {
@@ -478,8 +502,8 @@ in {
   # ADD ZRAM
   zramSwap = {
     enable = true;
-    algorithm = "lz4";
-    memoryPercent = 25;
+    algorithm = "zstd";
+    memoryPercent = 40;
   };
   # ACPILIGHT
   hardware.acpilight.enable = true;
