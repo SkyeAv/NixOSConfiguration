@@ -549,6 +549,7 @@ in {
     home.stateVersion = "25.11";
     # APPEND TO PATH
     home.sessionPath = [
+      "$HOME/.local/bin"
       "$HOME/go/bin"
     ];
     # BASH INSTALL
