@@ -326,6 +326,9 @@ in {
       torchvision
       safetensors
       onnxruntime
+      trafilatura
+      ruamel-yaml
+      statsmodels
       tokenizers
       matplotlib
       sqlalchemy
@@ -582,6 +585,7 @@ in {
         ms-vscode-remote.remote-ssh-edit
         github.vscode-github-actions
         ms-toolsai.jupyter-renderers
+        elixir-lsp.vscode-elixir-ls
         ms-vscode-remote.remote-ssh
         yzhang.markdown-all-in-one
         aaron-bond.better-comments
