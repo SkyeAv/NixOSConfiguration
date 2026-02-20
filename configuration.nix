@@ -174,6 +174,11 @@ in {
             actions.update-props = {"session.suspend-timeout-seconds" = 0;};
           }];
         };
+        "50-disable-bluez-seat-monitoring" = {
+          "wireplumber.profiles" = {
+            main = {"monitor.bluez.seat-monitoring" = "disabled";};
+          };
+        };
       };
     };
   };
@@ -212,6 +217,7 @@ in {
       "wheel"
       "input"
       "video"
+      "audio"
     ];
     subGidRanges = [{count = 65536; startGid = 1000;}];
     subUidRanges = [{count = 65536; startUid = 1000;}];
