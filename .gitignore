@@ -2,3 +2,5 @@
 *AGENTS.md
 *.claude/
 *.sisyphus/
+*.opencode/
+*.logs/
