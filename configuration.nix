@@ -219,14 +219,15 @@ in {
       "video"
       "audio"
     ];
-    subGidRanges = [{count = 65536; startGid = 1000;}];
-    subUidRanges = [{count = 65536; startUid = 1000;}];
+    subGidRanges = [{ count = 65536; startGid = 100000; }];
+    subUidRanges = [{ count = 65536; startUid = 100000; }];
     packages = (with pkgs; [
       bitwarden-desktop
       telegram-desktop
       wayland-scanner
       datafusion-cli
       podman-desktop
+      podman-compose
       brightnessctl
       appimage-run
       wl-clipboard
@@ -238,6 +239,7 @@ in {
       claude-code
       openconnect
       aircrack-ng
+      antigravity
       alsa-utils
       pkg-config
       metasploit
@@ -277,6 +279,7 @@ in {
       nimble
       libgcc
       psmisc
+      pdftk
       rsync
       hping
       tiled
@@ -478,8 +481,6 @@ in {
     xmlstarlet
     coreutils
     asusctl
-  ]) ++ ([
-    inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
   ]);
   # SUID WRAPPERS
   programs.mtr.enable = true;
@@ -562,6 +563,7 @@ in {
     programs.bash = {
       enable = true;
       shellAliases = {
+        amphetamine = "systemd-inhibit --what=idle:sleep --why='Presentation' sleep infinity";
         os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
         ssh-skyemac = "ssh skyeav@192.168.1.6";
         ps = "procs";
@@ -578,6 +580,11 @@ in {
     programs.zoxide = {
       enable = true;
       enableBashIntegration= true;
+    };
+    # DIRENV INSTALL
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
     };
     # VSCODE INSTALL
     programs.vscode = {

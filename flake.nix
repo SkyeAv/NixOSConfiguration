@@ -6,10 +6,8 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    kwin-effects-forceblur.url = "github:taj-ny/kwin-effects-forceblur";
-    kwin-effects-forceblur.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = inputs @ {self, nixpkgs, flake-parts, nix-cachyos-kernel, home-manager, kwin-effects-forceblur, ...}:
+  outputs = inputs @ {self, nixpkgs, flake-parts, nix-cachyos-kernel, home-manager, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
       flake = {
