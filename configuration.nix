@@ -269,6 +269,7 @@ in {
       chatbox
       xdotool
       pyright
+      pylint
       reaper
       zoxide
       neovim
@@ -292,6 +293,7 @@ in {
       ngrok
       wtype
       procs
+      ruff
       nmap
       file
       tmux
