@@ -36,6 +36,8 @@ in {
       "https://cache.nixos-cuda.org"
       "https://cache.flox.dev"
       "https://attic.xuyh0120.win/lantian"
+      "https://comfyui.cachix.org"
+      "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
       "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs"
@@ -43,6 +45,8 @@ in {
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      "comfyui.cachix.org-1:33mf9VzoIjzVbp0zwj+fT51HG0y31ZTK3nzYZAX0rec="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
   # GARBAGE COLLECTOR
@@ -58,6 +62,7 @@ in {
   # OVERLAYS
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
+    inputs.comfyui-nix.overlays.default
     (final: prev: {
       python313Packages = prev.python313Packages // {
         torch = prev.python313Packages.torch-bin;
@@ -210,6 +215,7 @@ in {
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "comfyui"
       "ydotool"
       "render"
       "podman"
@@ -504,6 +510,18 @@ in {
     ];
   };
   hardware.steam-hardware.enable = true;
+  # COMFY UI
+  services.comfyui = {
+    enable = true;
+    gpuSupport = "cuda";
+    enableManager = true;
+    port = 8188;
+    listenAddress = "0.0.0.0";
+    dataDir = "/var/lib/comfyui";
+    openFirewall = false;
+    extraArgs = ["--lowvram"];
+    createUser = true;
+  };
   # PODMAN ENABLE
   virtualisation.podman = {
     enable = true;
