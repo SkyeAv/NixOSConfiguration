@@ -62,7 +62,6 @@ in {
   # OVERLAYS
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
-    inputs.comfyui-nix.overlays.default
     (final: prev: {
       python313Packages = prev.python313Packages // {
         torch = prev.python313Packages.torch-bin;
@@ -215,7 +214,6 @@ in {
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
-      "comfyui"
       "ydotool"
       "render"
       "podman"
@@ -332,6 +330,7 @@ in {
       gh
     ]) ++ [(cuda-py.withPackages (ps: with ps; [
       sentence-transformers
+      huggingface-hub
       backports-zstd
       sentencepiece
       uncertainties
@@ -340,6 +339,7 @@ in {
       transformers
       jupyter-core
       transformers
+      opencv4Full
       torchvision
       safetensors
       onnxruntime
@@ -357,9 +357,12 @@ in {
       rapidfuzz
       ipykernel
       fastexcel
+      diffusers
+      protobuf
       torchsde
       notebook
       networkx
+      xformers
       fastmcp
       alembic
       aiohttp
@@ -456,6 +459,7 @@ in {
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaCapabilities = ["12.0"]; 
   # OPENGL
   hardware.graphics = {
     enable = true;
@@ -510,18 +514,6 @@ in {
     ];
   };
   hardware.steam-hardware.enable = true;
-  # COMFY UI
-  services.comfyui = {
-    enable = true;
-    gpuSupport = "cuda";
-    enableManager = true;
-    port = 8188;
-    listenAddress = "0.0.0.0";
-    dataDir = "/var/lib/comfyui";
-    openFirewall = false;
-    extraArgs = ["--lowvram"];
-    createUser = true;
-  };
   # PODMAN ENABLE
   virtualisation.podman = {
     enable = true;
