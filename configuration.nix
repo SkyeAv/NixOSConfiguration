@@ -353,6 +353,7 @@ in {
       playwright
       accelerate
       torchaudio
+      gymnasium
       biopython
       rapidfuzz
       ipykernel
@@ -362,7 +363,6 @@ in {
       torchsde
       notebook
       networkx
-      xformers
       fastmcp
       alembic
       aiohttp
@@ -459,7 +459,6 @@ in {
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
-  nixpkgs.config.cudaCapabilities = ["12.0"]; 
   # OPENGL
   hardware.graphics = {
     enable = true;
