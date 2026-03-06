@@ -371,6 +371,7 @@ in {
       fastapi
       pyexcel
       pyarrow
+      loguru
       pillow
       pyyaml
       duckdb
