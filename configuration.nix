@@ -383,6 +383,7 @@ in {
       einops
       psutil
       plotly
+      xxhash
       pyvis
       lmfit
       torch
