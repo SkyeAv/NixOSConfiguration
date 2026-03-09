@@ -247,7 +247,6 @@ in {
       libnotify
       qpwgraph
       foremost
-      lmstudio
       chemtool
       mangohud
       usbutils
@@ -259,7 +258,6 @@ in {
       glmark2
       zoom-us
       vesktop
-      chatbox
       xdotool
       pyright
       pylint
@@ -286,6 +284,8 @@ in {
       ngrok
       wtype
       procs
+      bisq2
+      kitty
       ruff
       nmap
       file
