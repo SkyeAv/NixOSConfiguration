@@ -232,6 +232,7 @@ in {
       openconnect
       aircrack-ng
       antigravity
+      tor-browser
       alsa-utils
       pkg-config
       metasploit
@@ -311,6 +312,7 @@ in {
       bat
       bun
       lua
+      tor
       dig
       fd
       jq
