@@ -8,13 +8,6 @@ let
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
   np = pkgs.nodePackages;
-  cuda-py = pkgs.python313.override {
-    packageOverrides = self: super: {
-      torch = super.torch-bin;
-      torchvision = super.torchvision-bin;
-      torchaudio = super.torchaudio-bin;
-    };
-  };
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -62,13 +55,6 @@ in {
   # OVERLAYS
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
-    (final: prev: {
-      python313Packages = prev.python313Packages // {
-        torch = prev.python313Packages.torch-bin;
-        torchvision = prev.python313Packages.torchvision-bin;
-        torchaudio = prev.python313Packages.torchaudio-bin;
-      };
-    })
   ];
   # CATCHY OS KERNEL
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
@@ -328,7 +314,7 @@ in {
       jq
       go
       gh
-    ]) ++ [(cuda-py.withPackages (ps: with ps; [
+    ]) ++ [(pkgs.python313.withPackages (ps: with ps; [
       sentence-transformers
       huggingface-hub
       backports-zstd
@@ -354,7 +340,6 @@ in {
       accelerate
       torchaudio
       gymnasium
-      biopython
       rapidfuzz
       ipykernel
       fastexcel
@@ -432,7 +417,6 @@ in {
   programs.thunderbird.enable = true;
   # ASUS LAPTOPS
   services.asusd.enable = true;
-  services.asusd.enableUserService = true;
   services.supergfxd.enable = true;
   # SSD TRIM
   services.fstrim.enable = true;
