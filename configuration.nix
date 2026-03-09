@@ -428,6 +428,8 @@ in {
   };
   # FIREFOX INSTALL
   programs.firefox.enable = true;
+  # THUNDERBIRD INSTALL
+  programs.thunderbird.enable = true;
   # ASUS LAPTOPS
   services.asusd.enable = true;
   services.asusd.enableUserService = true;
