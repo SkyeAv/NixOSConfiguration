@@ -214,6 +214,7 @@ in
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
+      "libvirtd"
       "ydotool"
       "render"
       "podman"
@@ -244,6 +245,7 @@ in
         podman-desktop
         podman-compose
         brightnessctl
+        virt-manager
         wl-clipboard
         whisper-cpp
         texliveFull
@@ -578,6 +580,8 @@ in
       corefonts
     ]
   );
+  # ADDED LIBVERT
+  virtualisation.libvirtd.enable = true;
   # YDOTOOL
   programs.ydotool.enable = true;
   services.udev.extraRules = ''
