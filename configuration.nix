@@ -7,7 +7,6 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
-  np = pkgs.nodePackages;
 in {
   # HARDWARE CONFIGURATION
   imports = [
@@ -236,6 +235,7 @@ in {
       alsa-utils
       pkg-config
       metasploit
+      nodejs_24
       wireshark
       fastfetch
       distrobox
@@ -404,8 +404,6 @@ in {
       cudatoolkit
     ]) ++ (with nvtop; [
       nvidia
-    ]) ++ (with np; [
-      nodejs
     ]) ++ [(pkgs.writeShellScriptBin "opencode" ''
       export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
       exec ${pkgs.opencode}/bin/opencode "$@"
