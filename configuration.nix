@@ -1,4 +1,10 @@
-{pkgs, inputs, lib, config, ...}:
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
 let
   code-extensions = pkgs.vscode-extensions;
   beam = pkgs.beamMinimal28Packages;
@@ -7,7 +13,8 @@ let
   caml = pkgs.ocamlPackages;
   plasma = pkgs.kdePackages;
   cuda = pkgs.cudaPackages;
-in {
+in
+{
   # HARDWARE CONFIGURATION
   imports = [
     ./hardware-configuration.nix
@@ -93,7 +100,7 @@ in {
     "nct6775"
     "uinput"
     "btusb"
-    "jc42"  
+    "jc42"
   ];
   # SYSCTL PARAMS
   boot.kernel.sysctl = {
@@ -160,14 +167,20 @@ in {
       enable = true;
       extraConfig = {
         "10-disable-suspend" = {
-          "monitor.alsa.rules" = [{
-            matches = [{"node.name" = "~alsa_output.*";}];
-            actions.update-props = {"session.suspend-timeout-seconds" = 0;};
-          }];
+          "monitor.alsa.rules" = [
+            {
+              matches = [ { "node.name" = "~alsa_output.*"; } ];
+              actions.update-props = {
+                "session.suspend-timeout-seconds" = 0;
+              };
+            }
+          ];
         };
         "50-disable-bluez-seat-monitoring" = {
           "wireplumber.profiles" = {
-            main = {"monitor.bluez.seat-monitoring" = "disabled";};
+            main = {
+              "monitor.bluez.seat-monitoring" = "disabled";
+            };
           };
         };
       };
@@ -210,201 +223,225 @@ in {
       "video"
       "audio"
     ];
-    subGidRanges = [{ count = 65536; startGid = 100000; }];
-    subUidRanges = [{ count = 65536; startUid = 100000; }];
-    packages = (with pkgs; [
-      bitwarden-desktop
-      telegram-desktop
-      wayland-scanner
-      datafusion-cli
-      podman-desktop
-      podman-compose
-      brightnessctl
-      wl-clipboard
-      whisper-cpp
-      texliveFull
-      libreoffice
-      imagemagick
-      pavucontrol
-      claude-code
-      openconnect
-      aircrack-ng
-      antigravity
-      tor-browser
-      alsa-utils
-      pkg-config
-      metasploit
-      nodejs_24
-      wireshark
-      fastfetch
-      distrobox
-      geekbench
-      stress-ng
-      xdg-utils
-      streamrip
-      goose-cli
-      libnotify
-      qpwgraph
-      foremost
-      chemtool
-      mangohud
-      usbutils
-      pciutils
-      goverlay
-      nix-diff
-      qrencode
-      ripgrep
-      glmark2
-      zoom-us
-      vesktop
-      pyright
-      nixfmt
-      pylint
-      reaper
-      zoxide
-      neovim
-      ffmpeg
-      libzip
-      heroic
-      duckdb
-      nimble
-      libgcc
-      psmisc
-      pdftk
-      rsync
-      hping
-      unzip
-      ocaml
-      gimp2
-      slack
-      cmake
-      ninja
-      ngrok
-      wtype
-      procs
-      bisq2
-      kitty
-      ruff
-      nmap
-      file
-      tmux
-      htop
-      curl
-      opam
-      dune
-      wget
-      lshw
-      gawk
-      btop
-      dust
-      love
-      tree
-      duf
-      fzf
-      zip
-      gcc
-      git
-      eza
-      nim
-      bat
-      bun
-      lua
-      tor
-      dig
-      fd
-      jq
-      go
-      gh
-    ]) ++ [(pkgs.python313.withPackages (ps: with ps; [
-      sentence-transformers
-      huggingface-hub
-      backports-zstd
-      sentencepiece
-      uncertainties
-      sqlite-utils
-      scikit-learn
-      transformers
-      jupyter-core
-      transformers
-      opencv4Full
-      torchvision
-      safetensors
-      onnxruntime
-      trafilatura
-      ruamel-yaml
-      statsmodels
-      tokenizers
-      matplotlib
-      sqlalchemy
-      setuptools
-      playwright
-      accelerate
-      torchaudio
-      gymnasium
-      rapidfuzz
-      ipykernel
-      fastexcel
-      diffusers
-      protobuf
-      torchsde
-      notebook
-      networkx
-      fastmcp
-      alembic
-      aiohttp
-      seaborn
-      optimum
-      fastapi
-      pyexcel
-      pyarrow
-      loguru
-      pillow
-      pyyaml
-      duckdb
-      orjson
-      polars
-      mkdocs
-      pandas
-      polars
-      flake8
-      einops
-      psutil
-      plotly
-      xxhash
-      pyvis
-      lmfit
-      torch
-      scipy
-      sympy
-      typer
-      numpy
-      wheel
-      tqdm
-      yarl
-      lxml
-      zstd
-      shap
-      peft
-      pipx
-      pip
-      av
-    ]))] ++ (with caml; [
-      cmdliner
-    ]) ++ (with beam; [
-      elixir
-    ]) ++ (with plasma; [
-      kdeconnect-kde
-      libkscreen
-      kzones
-      kate
-    ]) ++ (with cuda; [
-      cudatoolkit
-    ]) ++ (with nvtop; [
-      nvidia
-    ]) ++ [(pkgs.writeShellScriptBin "opencode" ''
-      export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-      exec ${pkgs.opencode}/bin/opencode "$@"
-    '')];
+    subGidRanges = [
+      {
+        count = 65536;
+        startGid = 100000;
+      }
+    ];
+    subUidRanges = [
+      {
+        count = 65536;
+        startUid = 100000;
+      }
+    ];
+    packages =
+      (with pkgs; [
+        bitwarden-desktop
+        telegram-desktop
+        wayland-scanner
+        datafusion-cli
+        podman-desktop
+        podman-compose
+        brightnessctl
+        wl-clipboard
+        whisper-cpp
+        texliveFull
+        libreoffice
+        imagemagick
+        pavucontrol
+        claude-code
+        openconnect
+        aircrack-ng
+        antigravity
+        tor-browser
+        alsa-utils
+        pkg-config
+        metasploit
+        nodejs_24
+        wireshark
+        fastfetch
+        distrobox
+        geekbench
+        stress-ng
+        xdg-utils
+        streamrip
+        goose-cli
+        libnotify
+        qpwgraph
+        foremost
+        chemtool
+        mangohud
+        usbutils
+        pciutils
+        goverlay
+        nix-diff
+        qrencode
+        ripgrep
+        glmark2
+        zoom-us
+        vesktop
+        pyright
+        nixfmt
+        pylint
+        reaper
+        zoxide
+        neovim
+        ffmpeg
+        libzip
+        heroic
+        duckdb
+        nimble
+        libgcc
+        psmisc
+        pdftk
+        rsync
+        hping
+        unzip
+        ocaml
+        gimp2
+        slack
+        cmake
+        ninja
+        ngrok
+        wtype
+        procs
+        bisq2
+        kitty
+        ruff
+        nmap
+        file
+        tmux
+        htop
+        curl
+        opam
+        dune
+        wget
+        lshw
+        gawk
+        btop
+        dust
+        love
+        tree
+        duf
+        fzf
+        zip
+        gcc
+        git
+        eza
+        nim
+        bat
+        bun
+        lua
+        tor
+        dig
+        fd
+        jq
+        go
+        gh
+      ])
+      ++ [
+        (pkgs.python313.withPackages (
+          ps: with ps; [
+            sentence-transformers
+            huggingface-hub
+            backports-zstd
+            sentencepiece
+            uncertainties
+            sqlite-utils
+            scikit-learn
+            transformers
+            jupyter-core
+            transformers
+            opencv4Full
+            torchvision
+            safetensors
+            onnxruntime
+            trafilatura
+            ruamel-yaml
+            statsmodels
+            tokenizers
+            matplotlib
+            sqlalchemy
+            setuptools
+            playwright
+            accelerate
+            torchaudio
+            gymnasium
+            rapidfuzz
+            ipykernel
+            fastexcel
+            diffusers
+            protobuf
+            torchsde
+            notebook
+            networkx
+            fastmcp
+            alembic
+            aiohttp
+            seaborn
+            optimum
+            fastapi
+            pyexcel
+            pyarrow
+            loguru
+            pillow
+            pyyaml
+            duckdb
+            orjson
+            polars
+            mkdocs
+            pandas
+            polars
+            flake8
+            einops
+            psutil
+            plotly
+            xxhash
+            pyvis
+            lmfit
+            torch
+            scipy
+            sympy
+            typer
+            numpy
+            wheel
+            tqdm
+            yarl
+            lxml
+            zstd
+            shap
+            peft
+            pipx
+            pip
+            av
+          ]
+        ))
+      ]
+      ++ (with caml; [
+        cmdliner
+      ])
+      ++ (with beam; [
+        elixir
+      ])
+      ++ (with plasma; [
+        kdeconnect-kde
+        libkscreen
+        kzones
+        kate
+      ])
+      ++ (with cuda; [
+        cudatoolkit
+      ])
+      ++ (with nvtop; [
+        nvidia
+      ])
+      ++ [
+        (pkgs.writeShellScriptBin "opencode" ''
+          export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+          exec ${pkgs.opencode}/bin/opencode "$@"
+        '')
+      ];
   };
   # ENVIRONMENT VARIABLES
   environment.variables = {
@@ -473,13 +510,16 @@ in {
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   # SYSTEM WIDE PACKAGES
-  environment.systemPackages = (with pkgs; [
-    supergfxctl
-    openconnect
-    xmlstarlet
-    coreutils
-    asusctl
-  ]);
+  environment.systemPackages = (
+    with pkgs;
+    [
+      supergfxctl
+      openconnect
+      xmlstarlet
+      coreutils
+      asusctl
+    ]
+  );
   # SUID WRAPPERS
   programs.mtr.enable = true;
   programs.gnupg.agent = {
@@ -516,9 +556,12 @@ in {
   # ACPILIGHT
   hardware.acpilight.enable = true;
   # FONTS
-  fonts.packages = (with pkgs; [
-    corefonts
-  ]);
+  fonts.packages = (
+    with pkgs;
+    [
+      corefonts
+    ]
+  );
   # YDOTOOL
   programs.ydotool.enable = true;
   services.udev.extraRules = ''
@@ -528,7 +571,7 @@ in {
   systemd.user.services = {
     hyprvoice = {
       description = "Hyprvoice service";
-      wantedBy = ["default.target"];
+      wantedBy = [ "default.target" ];
       path = [
         "/etc/profiles/per-user/skyeav"
         "/run/current-system/sw"
@@ -538,7 +581,7 @@ in {
     };
     ydotool = {
       description = "Ydotool service";
-      wantedBy = ["default.target"];
+      wantedBy = [ "default.target" ];
       path = [
         "/etc/profiles/per-user/skyeav"
         "/run/current-system/sw"
@@ -577,7 +620,7 @@ in {
     # ZOXIDE INSTALL
     programs.zoxide = {
       enable = true;
-      enableBashIntegration= true;
+      enableBashIntegration = true;
     };
     # DIRENV INSTALL
     programs.direnv = {
@@ -588,43 +631,46 @@ in {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      profiles.default.extensions = (with code-extensions; [
-        # MANYALLY SET MATERIAL ICON THEME AND NIGHT OWL THEME
-        # MANUALLY ADD WINDSURF AND NIMLANG
-        shd101wyy.markdown-preview-enhanced
-        ms-toolsai.vscode-jupyter-cell-tags
-        ms-toolsai.vscode-jupyter-slideshow
-        ms-vscode-remote.remote-ssh-edit
-        github.vscode-github-actions
-        ms-toolsai.jupyter-renderers
-        elixir-lsp.vscode-elixir-ls
-        ms-vscode-remote.remote-ssh
-        yzhang.markdown-all-in-one
-        aaron-bond.better-comments
-        pkief.material-icon-theme
-        ms-vscode.remote-explorer
-        ms-toolsai.jupyter-keymap
-        tamasfe.even-better-toml
-        ocamllabs.ocaml-platform
-        grapecity.gc-excelviewer
-        johnpapa.vscode-peacock
-        james-yu.latex-workshop
-        mechatroner.rainbow-csv
-        oderwat.indent-rainbow
-        esbenp.prettier-vscode
-        ms-vscode.live-server
-        usernamehw.errorlens
-        ms-toolsai.jupyter
-        jnoortheen.nix-ide
-        redhat.vscode-yaml
-        ms-pyright.pyright
-        ms-python.python
-        sdras.night-owl
-        eamodio.gitlens
-        zainchen.json
-        sumneko.lua
-        golang.go
-      ]);
+      profiles.default.extensions = (
+        with code-extensions;
+        [
+          # MANYALLY SET MATERIAL ICON THEME AND NIGHT OWL THEME
+          # MANUALLY ADD WINDSURF AND NIMLANG
+          shd101wyy.markdown-preview-enhanced
+          ms-toolsai.vscode-jupyter-cell-tags
+          ms-toolsai.vscode-jupyter-slideshow
+          ms-vscode-remote.remote-ssh-edit
+          github.vscode-github-actions
+          ms-toolsai.jupyter-renderers
+          elixir-lsp.vscode-elixir-ls
+          ms-vscode-remote.remote-ssh
+          yzhang.markdown-all-in-one
+          aaron-bond.better-comments
+          pkief.material-icon-theme
+          ms-vscode.remote-explorer
+          ms-toolsai.jupyter-keymap
+          tamasfe.even-better-toml
+          ocamllabs.ocaml-platform
+          grapecity.gc-excelviewer
+          johnpapa.vscode-peacock
+          james-yu.latex-workshop
+          mechatroner.rainbow-csv
+          oderwat.indent-rainbow
+          esbenp.prettier-vscode
+          ms-vscode.live-server
+          usernamehw.errorlens
+          ms-toolsai.jupyter
+          jnoortheen.nix-ide
+          redhat.vscode-yaml
+          ms-pyright.pyright
+          ms-python.python
+          sdras.night-owl
+          eamodio.gitlens
+          zainchen.json
+          sumneko.lua
+          golang.go
+        ]
+      );
     };
   };
   # VSCODE USE WAYLAND
