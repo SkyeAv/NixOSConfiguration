@@ -220,7 +220,6 @@ in {
       podman-desktop
       podman-compose
       brightnessctl
-      appimage-run
       wl-clipboard
       whisper-cpp
       texliveFull
@@ -258,7 +257,6 @@ in {
       glmark2
       zoom-us
       vesktop
-      xdotool
       pyright
       pylint
       reaper
@@ -274,7 +272,6 @@ in {
       pdftk
       rsync
       hping
-      tiled
       unzip
       ocaml
       gimp2
@@ -297,7 +294,6 @@ in {
       wget
       lshw
       gawk
-      vpnc
       btop
       dust
       love
