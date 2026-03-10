@@ -258,6 +258,7 @@ in {
       zoom-us
       vesktop
       pyright
+      nixfmt
       pylint
       reaper
       zoxide
