@@ -526,10 +526,26 @@ in
     enable = true;
     enableSSHSupport = true;
   };
+  # ADDING I2P SUPPORT
+  services.i2pd = {
+    enable = true;
+    address = "0.0.0.0";
+    proto = {
+      http.enable = true;
+      socksProxy.enable = true;
+      httpProxy.enable = true;
+    };
+  };
   # ENABLE OPENSSH
   services.openssh.enable = true;
   # DISABLE FIREWALL
   networking.firewall.enable = false;
+  # I2P PROXIES
+  networking.firewall.allowedTCPPorts = [
+    7070
+    4447
+    4444
+  ];
   # STEAM INSTALL
   programs.steam = {
     enable = true;
