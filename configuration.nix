@@ -247,6 +247,7 @@ in
         brightnessctl
         virt-manager
         wl-clipboard
+        ghostscript
         whisper-cpp
         texliveFull
         libreoffice
