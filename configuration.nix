@@ -253,7 +253,6 @@ in
         libreoffice
         imagemagick
         pavucontrol
-        claude-code
         openconnect
         aircrack-ng
         antigravity
@@ -269,7 +268,6 @@ in
         stress-ng
         xdg-utils
         streamrip
-        goose-cli
         libnotify
         qpwgraph
         foremost
@@ -474,9 +472,6 @@ in
   services.fcron = {
     enable = true;
     systab = ''
-      # RESET VIBE CODE LIMITS
-      @ 6:00 & bootrun(true) echo "Hi" | claude --print
-      @ 6:00 & bootrun(true) opencode run "Hi"
       # OS BACKUP TO LOCAL SERVER
       @ 20:00 & bootrun(true) rsync -av --no-compress --exclude="Backups" --delete /home/skyeav/ skyeav@192.168.1.6:/Users/skyeav/Backups/SkyeTop
     '';
