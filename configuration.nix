@@ -374,6 +374,7 @@ in
             fastexcel
             diffusers
             protobuf
+            uv-build
             torchsde
             notebook
             networkx
