@@ -245,7 +245,6 @@ in
         podman-desktop
         podman-compose
         brightnessctl
-        virt-manager
         wl-clipboard
         ghostscript
         whisper-cpp
@@ -257,6 +256,7 @@ in
         aircrack-ng
         antigravity
         tor-browser
+        virt-viewer
         alsa-utils
         pkg-config
         metasploit
@@ -577,7 +577,14 @@ in
     ]
   );
   # ADDED LIBVERT
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
   # YDOTOOL
   programs.ydotool.enable = true;
   services.udev.extraRules = ''
