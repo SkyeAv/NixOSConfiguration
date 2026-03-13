@@ -630,6 +630,8 @@ in
         amphetamine = "systemd-inhibit --what=idle:sleep --why='Presentation' sleep infinity";
         os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
         ssh-skyemac = "ssh skyeav@192.168.1.6";
+        gcomm = "git add -A && git commit -m";
+        gpush = "git push origin";
         ps = "procs";
         top = "htop";
         vim = "nvim";
