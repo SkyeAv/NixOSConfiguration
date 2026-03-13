@@ -373,6 +373,7 @@ in
             ipykernel
             fastexcel
             diffusers
+            hatchling
             protobuf
             uv-build
             torchsde
