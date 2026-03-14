@@ -485,7 +485,6 @@ in
       stdenv.cc.cc.lib
     ]);
   };
-  }
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
