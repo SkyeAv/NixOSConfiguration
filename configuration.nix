@@ -269,6 +269,7 @@ in
         xdg-utils
         streamrip
         libnotify
+        opencode
         qpwgraph
         foremost
         chemtool
@@ -438,13 +439,7 @@ in
       ])
       ++ (with nvtop; [
         nvidia
-      ])
-      ++ [
-        (pkgs.writeShellScriptBin "opencode" ''
-          export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-          exec ${pkgs.opencode}/bin/opencode "$@"
-        '')
-      ];
+      ]);
   };
   # ENVIRONMENT VARIABLES
   environment.variables = {
@@ -707,7 +702,9 @@ in
   };
   # ENVIRONMENT VARIABLES
   environment.sessionVariables = {
-    LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib\${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}";
+    LD_LIBRARY_PATH = [
+      "/run/current-system/sw/share/nix-ld/lib"
+    ];
     NIXOS_OZONE_WL = "1";
   };
   # NIX VERSION
