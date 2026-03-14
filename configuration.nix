@@ -705,8 +705,11 @@ in
       );
     };
   };
-  # VSCODE USE WAYLAND
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # ENVIRONMENT VARIABLES
+  environment.sessionVariables = {
+    LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib\${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}";
+    NIXOS_OZONE_WL = "1";
+  };
   # NIX VERSION
   system.stateVersion = "25.11";
 }
