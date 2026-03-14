@@ -479,7 +479,13 @@ in
     '';
   };
   # NIX LD FOR BINARIES
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = (with pkgs; [
+      stdenv.cc.cc.lib
+    ]);
+  };
+  }
   # ALLOW UNFREE PACKAGES
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
