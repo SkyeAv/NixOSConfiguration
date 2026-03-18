@@ -277,6 +277,7 @@ in
         goverlay
         nix-diff
         qrencode
+        nushell
         ripgrep
         glmark2
         zoom-us
@@ -339,7 +340,6 @@ in
         jq
         go
         gh
-        nu
       ])
       ++ [
         (pkgs.python313.withPackages (
