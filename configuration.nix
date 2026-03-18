@@ -324,6 +324,7 @@ in
         dust
         love
         tree
+        prek
         duf
         fzf
         zip
@@ -361,7 +362,6 @@ in
             trafilatura
             ruamel-yaml
             statsmodels
-            pre-commit
             tokenizers
             matplotlib
             sqlalchemy
