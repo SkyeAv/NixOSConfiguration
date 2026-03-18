@@ -242,7 +242,6 @@ in
         telegram-desktop
         wayland-scanner
         datafusion-cli
-        podman-desktop
         podman-compose
         brightnessctl
         wl-clipboard
@@ -265,7 +264,6 @@ in
         fastfetch
         distrobox
         geekbench
-        stress-ng
         xdg-utils
         streamrip
         libnotify
@@ -341,6 +339,7 @@ in
         jq
         go
         gh
+        nu
       ])
       ++ [
         (pkgs.python313.withPackages (
@@ -362,6 +361,7 @@ in
             trafilatura
             ruamel-yaml
             statsmodels
+            pre-commit
             tokenizers
             matplotlib
             sqlalchemy
