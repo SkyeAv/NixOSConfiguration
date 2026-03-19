@@ -208,9 +208,12 @@ in
     freeMemThreshold = 5;
     freeSwapThreshold = 10;
   };
+  # ENABLE ZSH
+  programs.zsh.enable = true;
   # USER ACCOUNT
   users.users.skyeav = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "Skye Lane Goetz";
     extraGroups = [
       "networkmanager"
@@ -277,7 +280,6 @@ in
         goverlay
         nix-diff
         qrencode
-        nushell
         ripgrep
         glmark2
         zoom-us
@@ -625,9 +627,11 @@ in
       "$HOME/.local/bin"
       "$HOME/go/bin"
     ];
-    # BASH INSTALL
-    programs.bash = {
+    # ZSH INSTALL
+    programs.zsh = {
       enable = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
       shellAliases = {
         amphetamine = "systemd-inhibit --what=idle:sleep --why='Presentation' sleep infinity";
         os-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
@@ -643,17 +647,28 @@ in
         df = "duf";
         cd = "z";
       };
+      oh-my-zsh = {
+        enable = true;
+        theme = "eastwood";
+      };
     };
     # ZOXIDE INSTALL
     programs.zoxide = {
       enable = true;
-      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
     # DIRENV INSTALL
     programs.direnv = {
       enable = true;
-      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
+    # CARAPACE INSTALL
+    programs.carapace = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    # NUSHELL INSTALL
+    programs.nushell.enable = true;
     # VSCODE INSTALL
     programs.vscode = {
       enable = true;
