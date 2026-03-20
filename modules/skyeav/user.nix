@@ -119,7 +119,6 @@
       zlib
       pipx
       perl
-      pip
       ghc
       duf
       fzf

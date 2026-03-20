@@ -24,13 +24,14 @@
   };
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
       flake.nixosConfigurations.skyemac = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./modules/hardware.nix
           ./modules/skyeav/user.nix
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           ./modules/skyeav/home.nix
           ./modules/settings.nix
           ./modules/kernel.nix
@@ -38,7 +39,7 @@
           ./modules/virtualization.nix
           ./modules/global.nix
           ./modules/networking.nix
-          nix-index-database.nixosModules.default
+          inputs.nix-index-database.nixosModules.default
         ];
       };
     };

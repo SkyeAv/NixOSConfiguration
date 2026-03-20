@@ -46,8 +46,8 @@
               "git"
             ];
             theme = "eastwood";
-            history.size = 100;
           };
+          history.size = 100;
         };
         # Zoxide integration
         zoxide = {
@@ -114,5 +114,5 @@
         librewolf.enable = true;
       };
     };
-  }
+  };
 }

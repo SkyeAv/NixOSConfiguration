@@ -30,7 +30,6 @@
     printing.enable = true;
     # Audio settings
     pulseaudio.enable = false;
-    rtkit.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -115,4 +114,6 @@
       };
     };
   };
+  # Rtkit for audio
+  security.rtkit.enable = true;
 }
