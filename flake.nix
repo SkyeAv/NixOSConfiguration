@@ -29,6 +29,8 @@
           ./modules/skyeav/user.nix
           home-manager.nixosModules.home-manager
           ./modules/skyeav/home.nix
+          ./modules/settings.nix
+          ./modules/kernel.nix
         ];
       };
     };
