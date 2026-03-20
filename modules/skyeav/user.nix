@@ -37,7 +37,9 @@
     packages = with pkgs; [
       beamMinimal28Packages.elixir_1_19
       cudaPackages.cudatoolkit
+      kdePackages.libkscreen
       nvtopPackages.nvidia
+      kdePackages.kzones
       bitwarden-desktop
       telegram-desktop
       datafusion-cli
@@ -64,6 +66,7 @@
       xdg-utils
       streamrip
       libnotify
+      julia_111
       opencode
       qpwgraph
       foremost
@@ -115,6 +118,7 @@
       prek
       zlib
       pipx
+      perl
       pip
       ghc
       duf
