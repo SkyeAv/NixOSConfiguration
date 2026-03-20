@@ -87,6 +87,7 @@
             "material-icon-theme"
             "ayu-darker"
             "git-firefly"
+            "log"
           ];
           installRemoteServer = true;
           userSettings = {
