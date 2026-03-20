@@ -88,6 +88,7 @@
             "ayu-darker"
             "git-firefly"
             "log"
+            "docker-compose"
           ];
           installRemoteServer = true;
           userSettings = {

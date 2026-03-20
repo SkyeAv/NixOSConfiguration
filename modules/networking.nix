@@ -13,7 +13,7 @@
       ];
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [
         7070
         4447
