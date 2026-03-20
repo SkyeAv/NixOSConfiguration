@@ -163,28 +163,7 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-    wireplumber = {
-      enable = true;
-      extraConfig = {
-        "10-disable-suspend" = {
-          "monitor.alsa.rules" = [
-            {
-              matches = [ { "node.name" = "~alsa_output.*"; } ];
-              actions.update-props = {
-                "session.suspend-timeout-seconds" = 0;
-              };
-            }
-          ];
-        };
-        "50-disable-bluez-seat-monitoring" = {
-          "wireplumber.profiles" = {
-            main = {
-              "monitor.bluez.seat-monitoring" = "disabled";
-            };
-          };
-        };
-      };
-    };
+    wireplumber.enable = true;
   };
   # ENABLE FIRMWARE
   hardware.enableAllFirmware = true;

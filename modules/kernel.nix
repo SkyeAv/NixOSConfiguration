@@ -117,4 +117,10 @@
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
+  # Zram
+  zramSwap = {
+    enable = true;
+    algorithm = "l4z";
+    memoryPercent = 25;
+  };
 }
