@@ -6,9 +6,16 @@
 }:
 {
   # Kernel, boot, hardware, and OS configuration
-  nixpkgs.overlays = [
-    inputs.nix-cachyos-kernel.overlays.pinned
-  ];
+  nixpkgs = {
+    overlays = [
+      inputs.nix-cachyos-kernel.overlays.pinned
+    ];
+    # Allow unfree packages
+    config = {
+      allowUnfree = true;
+      cudaSupport = true;
+    };
+  };
   boot = {
     loader = {
       timeout = 1;

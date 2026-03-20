@@ -110,6 +110,8 @@
           enable = true;
           shellIntegration.enableZshIntegration = true;
         };
+        # Librewolf
+        librewolf.enable = true;
       };
     };
   }
