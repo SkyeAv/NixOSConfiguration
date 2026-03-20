@@ -29,6 +29,7 @@
             amphetamine = ''systemd-inhibit --what=idle:sleep --why="Presentation" sleep infinity'';
             rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
             skyemac = "ssh skyeav@192.168.1.6";
+            zed = "zeditor";
             ps = "procs";
             top = "htop";
             du = "dust";
@@ -40,9 +41,7 @@
           oh-my-zsh = {
             enable = true;
             plugins = [
-              "docker-compose"
               "extract"
-              "docker"
               "git"
             ];
             theme = "eastwood";
@@ -87,16 +86,19 @@
             "github-actions"
             "material-icon-theme"
             "ayu-darker"
+            "git-firefly"
           ];
           installRemoteServer = true;
           userSettings = {
             theme = {
               mode = "dark";
               dark = "Ayu Darker";
-              terminal = {
-                shell = "system";
-              };
+              light = "Ayu Darker";
             };
+            terminal = {
+              shell = "system";
+            };
+            base_keymap = "VSCode";
           };
         };
         # Neovim configuration
