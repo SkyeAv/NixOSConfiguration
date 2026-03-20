@@ -55,6 +55,8 @@
     };
     # Ydotool
     ydotool.enable = true;
+    # Comma
+    nix-index-database.comma.enable = true;
   };
   # Do not modify this
   system.stateVersion = "25.11";

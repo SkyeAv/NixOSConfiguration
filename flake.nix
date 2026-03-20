@@ -9,7 +9,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,6 +16,10 @@
     };
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = inputs:
@@ -35,6 +38,7 @@
           ./modules/virtualization.nix
           ./modules/global.nix
           ./modules/networking.nix
+          nix-index-database.nixosModules.default
         ];
       };
     };
