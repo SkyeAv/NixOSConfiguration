@@ -9,6 +9,7 @@
   nixpkgs = {
     overlays = [
       inputs.nix-cachyos-kernel.overlays.pinned
+      inputs.neovim-nightly-overlay.overlays.default
     ];
     # Allow unfree packages
     config = {
