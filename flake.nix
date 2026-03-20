@@ -22,7 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       flake.nixosConfigurations.skyemac = inputs.nixpkgs.lib.nixosSystem {

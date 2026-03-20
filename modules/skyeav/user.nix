@@ -45,6 +45,7 @@
       datafusion-cli
       podman-compose
       cabal-install
+      nixfmt-tree
       ghostscript
       whisper-cpp
       texliveFull
@@ -80,7 +81,6 @@
       zoom-us
       vesktop
       pyright
-      nixfmt
       ffmpeg
       libzip
       duckdb
