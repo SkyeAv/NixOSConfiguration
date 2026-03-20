@@ -90,6 +90,7 @@
   };
   # Systemd
   systemd = {
+    services.NetworkManager-wait-online.enable = false;
     # User services
     user.services = {
       hyprvoice = {
