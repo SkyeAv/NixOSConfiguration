@@ -31,6 +31,10 @@
           ./modules/skyeav/home.nix
           ./modules/settings.nix
           ./modules/kernel.nix
+          ./modules/services.nix
+          ./modules/virtualization.nix
+          ./modules/global.nix
+          ./modules/networking.nix
         ];
       };
     };
