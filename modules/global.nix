@@ -28,6 +28,7 @@
   };
   programs = {
     zsh.enable = true;
+    # Firefox
     firefox.enable = true;
     thunderbird.enable = true;
     # Links compilers to fhs locations
@@ -37,7 +38,23 @@
         stdenv.cc.cc.lib
       ];
     };
-
+    # Subuid support
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    # Steam configuration
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
+    # Ydotool
+    ydotool.enable = true;
   };
   # Do not modify this
   system.stateVersion = "25.11";
