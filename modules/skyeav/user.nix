@@ -100,6 +100,7 @@
       wtype
       procs
       bisq2
+      bazel
       ruff
       nmap
       file
