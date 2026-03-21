@@ -27,6 +27,7 @@
     };
   };
   programs = {
+    bash.enable = true;
     zsh.enable = true;
     # Firefox
     firefox.enable = true;

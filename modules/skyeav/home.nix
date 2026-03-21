@@ -114,6 +114,8 @@
           enable = true;
           shellIntegration.enableZshIntegration = true;
         };
+        # Alacritty configuration
+        alacritty.enable = true;
         # Librewolf
         librewolf.enable = true;
       };
