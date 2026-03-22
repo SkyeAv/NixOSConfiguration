@@ -82,6 +82,7 @@
       zoom-us
       vesktop
       pyright
+      awscli2
       ffmpeg
       libzip
       duckdb
