@@ -11,6 +11,7 @@
     extraGroups = [
       "networkmanager"
       "libvirtd"
+      "comfyui"
       "ydotool"
       "render"
       "podman"

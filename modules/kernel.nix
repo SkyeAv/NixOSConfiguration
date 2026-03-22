@@ -10,6 +10,7 @@
     overlays = [
       inputs.nix-cachyos-kernel.overlays.pinned
       inputs.neovim-nightly-overlay.overlays.default
+      inputs.comfyui-nix.overlays.default
     ];
     # Allow unfree packages
     config = {

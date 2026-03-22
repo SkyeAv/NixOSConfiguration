@@ -86,6 +86,18 @@
     udev.extraRules = ''
       KERNEL=="uinput", MODE="0660", GROUP="ydotool", OPTIONS+="static_node=uinput"
     '';
+    # ComfyUI configuration
+    comfyui = {
+      enable = true;
+      gpuSupport = "cuda";
+      dataDir = "/home/skyeav/comfyui-data";
+      user = "skyeav";
+      group = "comfyui";
+      createUser = true;
+      enableManager = true;
+      port = 8188;
+      listenAddress = "0.0.0.0";
+    };
   };
   # Systemd
   systemd = {
@@ -114,6 +126,11 @@
       };
     };
   };
-  # Rtkit for audio
-  security.rtkit.enable = true;
+  # Security configuration
+  security = {
+    # Rtkit for audio
+    rtkit.enable = true;
+    # Polkit for VMs
+    polkit.enable = true;
+  };
 }

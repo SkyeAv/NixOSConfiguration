@@ -24,6 +24,9 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
     };
+    comfyui-nix = {
+      url = "github:utensils/comfyui-nix";
+    };
   };
   outputs =
     inputs:
@@ -44,6 +47,7 @@
           ./modules/global.nix
           ./modules/networking.nix
           inputs.nix-index-database.nixosModules.default
+          inputs.comfyui-nix.nixosModules.default
         ];
       };
     };
