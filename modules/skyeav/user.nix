@@ -78,6 +78,7 @@
       pciutils
       nix-diff
       qrencode
+      gnumake
       ripgrep
       zoom-us
       vesktop

@@ -89,6 +89,7 @@
             "git-firefly"
             "log"
             "docker-compose"
+            "make"
           ];
           installRemoteServer = true;
           userSettings = {
