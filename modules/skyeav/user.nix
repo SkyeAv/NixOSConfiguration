@@ -57,6 +57,7 @@
       antigravity
       tor-browser
       virt-viewer
+      cloudflared
       micromamba
       alsa-utils
       metasploit
