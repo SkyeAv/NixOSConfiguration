@@ -83,9 +83,14 @@
     # Power profiles daemon
     power-profiles-daemon.enable = true;
     # Udev rules
-    udev.extraRules = ''
-      KERNEL=="uinput", MODE="0660", GROUP="ydotool", OPTIONS+="static_node=uinput"
-    '';
+    udev = {
+      packages = with pkgs; [
+        mixxx
+      ];
+      extraRules = ''
+        KERNEL=="uinput", MODE="0660", GROUP="ydotool", OPTIONS+="static_node=uinput"
+      '';
+    };
     # ComfyUI configuration
     comfyui = {
       enable = true;
