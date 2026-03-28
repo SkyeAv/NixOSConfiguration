@@ -40,6 +40,7 @@
       "quiet"
     ];
     kernelModules = [
+      "snd-seq-midi"
       "asus_wmi"
       "uvcvideo"
       "k10temp"
