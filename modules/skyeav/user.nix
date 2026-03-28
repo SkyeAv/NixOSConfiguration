@@ -67,7 +67,6 @@
       fastfetch
       geekbench
       xdg-utils
-      streamrip
       libnotify
       julia_111
       opencode
@@ -107,6 +106,7 @@
       procs
       bisq2
       bazel
+      scdl
       ruff
       nmap
       file
