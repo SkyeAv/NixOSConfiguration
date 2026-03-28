@@ -79,6 +79,7 @@
       pciutils
       nix-diff
       qrencode
+      openssl
       gnumake
       ripgrep
       zoom-us
