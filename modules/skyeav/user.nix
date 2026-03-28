@@ -92,6 +92,7 @@
       libgcc
       psmisc
       rustup
+      mixxx
       pdftk
       rsync
       hping
