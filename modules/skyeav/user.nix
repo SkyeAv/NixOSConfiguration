@@ -95,6 +95,7 @@
       libgcc
       psmisc
       rustup
+      drawio
       mixxx
       pdftk
       rsync
