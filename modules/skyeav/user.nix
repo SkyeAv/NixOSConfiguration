@@ -61,6 +61,7 @@
       micromamba
       alsa-utils
       metasploit
+      recordbox
       python314
       nodejs_24
       wireshark
@@ -85,6 +86,7 @@
       vesktop
       pyright
       awscli2
+      ardour
       logseq
       ffmpeg
       libzip
