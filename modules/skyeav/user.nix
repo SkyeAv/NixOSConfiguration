@@ -85,6 +85,7 @@
       vesktop
       pyright
       awscli2
+      logseq
       ffmpeg
       libzip
       duckdb
@@ -92,7 +93,6 @@
       libgcc
       psmisc
       rustup
-      mixxx
       pdftk
       rsync
       hping
