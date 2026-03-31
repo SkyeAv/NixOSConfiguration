@@ -46,6 +46,7 @@
       datafusion-cli
       podman-compose
       cabal-install
+      claude-code
       nixfmt-tree
       ghostscript
       whisper-cpp
