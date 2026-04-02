@@ -5,6 +5,7 @@
 {
   # NixOS user configuration
   users.users.skyeav = {
+    description = "Skye Lane Goetz";
     isNormalUser = true;
     shell = pkgs.zsh;
     # Group configuration
