@@ -81,6 +81,7 @@
       pciutils
       nix-diff
       qrencode
+      rstudio
       openssl
       gnumake
       ripgrep
@@ -150,6 +151,7 @@
       go
       gh
       uv
+      R
     ];
   };
 }
