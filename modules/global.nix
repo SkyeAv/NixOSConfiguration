@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -37,6 +38,7 @@
       enable = true;
       libraries = with pkgs; [
         stdenv.cc.cc.lib
+        config.boot.kernelPackages.nvidiaPackages.beta
       ];
     };
     # Subuid support
