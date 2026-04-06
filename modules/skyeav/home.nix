@@ -139,6 +139,24 @@
           '';
         };
       };
+      # VSCode configuration
+      vscode = {
+        enable = true;
+        package = pkgs.vscode;
+        enableUpdateCheck = true;
+        enableExtensionUpdateCheck = true;
+        mutableExtensionsDir = true;
+        extensions = with pkgs.vscode-extensions; [
+          ms-toolsai.vscode-jupyter-slideshow
+          ms-toolsai.vscode-jupyter-cell-tags
+          ms-toolsai.jupyter-renderers
+          ms-toolsai.jupyter-keymap
+          julialang.language-julia
+          james-yu.latex-workshop
+          ms-toolsai.jupyter
+          ms-python.python
+        ];
+      };
     };
   };
 }
