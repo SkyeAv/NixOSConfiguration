@@ -131,6 +131,12 @@
             sensible
             yank
           ];
+          extraConfig = ''
+            setw -g mode-keys vi
+            bind-key -T copy-mode-vi v send-keys -X begin-selection
+            bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
+            bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
+          '';
         };
       };
     };
