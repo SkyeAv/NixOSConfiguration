@@ -47,6 +47,7 @@
       datafusion-cli
       podman-compose
       cabal-install
+      wl-clipboard
       claude-code
       nixfmt-tree
       ghostscript
@@ -117,7 +118,6 @@
       ruff
       nmap
       file
-      tmux
       htop
       curl
       opam

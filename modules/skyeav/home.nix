@@ -119,6 +119,19 @@
         alacritty.enable = true;
         # Librewolf
         librewolf.enable = true;
+        # Tmux configuration
+        tmux = {
+          enable = true;
+          baseIndex = 1;
+          historyLimit = 10000;
+          mouse = true;
+          keyMode = "vi";
+          plugins = with pkgs.tmuxPlugins; [
+            catppuccin
+            sensible
+            yank
+          ];
+        };
       };
     };
   };
