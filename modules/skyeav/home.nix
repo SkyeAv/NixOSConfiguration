@@ -149,6 +149,7 @@
             ms-toolsai.vscode-jupyter-slideshow
             ms-toolsai.vscode-jupyter-cell-tags
             ms-toolsai.jupyter-renderers
+            pkief.material-icon-theme
             ms-toolsai.jupyter-keymap
             julialang.language-julia
             james-yu.latex-workshop
