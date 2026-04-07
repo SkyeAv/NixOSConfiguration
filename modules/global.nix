@@ -39,11 +39,6 @@
       libraries = with pkgs; [
         config.boot.kernelPackages.nvidiaPackages.beta
         stdenv.cc.cc.lib
-        libssh2
-        openssl
-        nghttp2
-        curl
-        zlib
       ];
     };
     # Subuid support

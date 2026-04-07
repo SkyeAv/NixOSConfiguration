@@ -72,7 +72,7 @@
       geekbench
       xdg-utils
       libnotify
-      julia_111
+      julia-bin
       opencode
       qpwgraph
       foremost
@@ -133,6 +133,8 @@
       zlib
       pipx
       perl
+      nixd
+      nil
       ghc
       duf
       fzf
