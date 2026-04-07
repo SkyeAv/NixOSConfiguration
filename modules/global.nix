@@ -37,8 +37,13 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        stdenv.cc.cc.lib
         config.boot.kernelPackages.nvidiaPackages.beta
+        stdenv.cc.cc.lib
+        libssh2
+        openssl
+        nghttp2
+        curl
+        zlib
       ];
     };
     # Subuid support
