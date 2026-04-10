@@ -90,6 +90,7 @@
       vesktop
       pyright
       awscli2
+      pandoc
       ardour
       logseq
       ffmpeg
