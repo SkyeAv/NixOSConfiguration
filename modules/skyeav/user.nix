@@ -71,14 +71,12 @@
       nodejs_24
       wireshark
       fastfetch
-      geekbench
       xdg-utils
       libnotify
       julia-bin
       opencode
       qpwgraph
       foremost
-      chemtool
       mangohud
       usbutils
       pciutils
@@ -92,6 +90,7 @@
       vesktop
       pyright
       awscli2
+      heroic
       pandoc
       ardour
       logseq
