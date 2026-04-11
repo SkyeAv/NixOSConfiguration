@@ -45,6 +45,7 @@
       kdePackages.kzones
       bitwarden-desktop
       telegram-desktop
+      signal-desktop
       datafusion-cli
       podman-compose
       cabal-install
