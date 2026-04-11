@@ -18,13 +18,16 @@
       asusctl
     ];
     variables = {
+      PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+      PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
+      PLAYWRIGHT_HOST_PLATFORM_OVERRIDE = "ubuntu-24.04";
       CUDA_PATH = "${pkgs.cudatoolkit}";
     };
     sessionVariables = {
+      NIXOS_OZONE_WL = "1";
       LD_LIBRARY_PATH = [
         "/run/current-system/sw/share/nix-ld/lib"
       ];
-      NIXOS_OZONE_WL = "1";
     };
   };
   programs = {
