@@ -8,8 +8,8 @@
   # Kernel, boot, hardware, and OS configuration
   nixpkgs = {
     overlays = [
-      inputs.nix-cachyos-kernel.overlays.pinned
       inputs.neovim-nightly-overlay.overlays.default
+      inputs.nix-cachyos-kernel.overlays.pinned
       inputs.comfyui-nix.overlays.default
     ];
     # Allow unfree packages
