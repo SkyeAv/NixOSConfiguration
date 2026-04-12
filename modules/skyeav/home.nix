@@ -117,8 +117,8 @@
         };
         # Alacritty configuration
         alacritty.enable = true;
-        # Librewolf
-        librewolf.enable = true;
+        # Chromium
+        chromium.enable = true;
         # Tmux configuration
         tmux = {
           enable = true;
