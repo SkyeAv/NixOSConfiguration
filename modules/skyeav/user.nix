@@ -42,6 +42,7 @@
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
       nvtopPackages.nvidia
+      rPackages.tidyverse
       kdePackages.kzones
       bitwarden-desktop
       telegram-desktop
