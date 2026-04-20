@@ -67,7 +67,6 @@
       micromamba
       alsa-utils
       metasploit
-      recordbox
       python314
       nodejs_24
       wireshark
@@ -75,6 +74,7 @@
       xdg-utils
       libnotify
       julia-bin
+      # recordbox BROKEN FOR NOW
       opencode
       qpwgraph
       foremost
@@ -83,7 +83,7 @@
       pciutils
       nix-diff
       qrencode
-      rstudio
+      # rstudio BROKEN FOR NOW
       openssl
       gnumake
       ripgrep
