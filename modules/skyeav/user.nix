@@ -46,6 +46,7 @@
       kdePackages.kzones
       bitwarden-desktop
       telegram-desktop
+      elmPackages.elm
       signal-desktop
       datafusion-cli
       podman-compose
