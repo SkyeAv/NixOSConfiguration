@@ -51,6 +51,7 @@
       datafusion-cli
       podman-compose
       cabal-install
+      dotnet-sdk_11
       wl-clipboard
       claude-code
       nixfmt-tree
@@ -65,7 +66,6 @@
       tor-browser
       virt-viewer
       cloudflared
-      dotnet-sdk
       micromamba
       alsa-utils
       metasploit
