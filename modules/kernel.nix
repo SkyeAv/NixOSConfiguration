@@ -10,16 +10,14 @@
     overlays = [
       inputs.neovim-nightly-overlay.overlays.default
       inputs.nix-cachyos-kernel.overlays.pinned
-      inputs.comfyui-nix.overlays.default
     ];
     # Allow unfree packages
     config = {
       allowUnfree = true;
       cudaSupport = true;
+      cudaCapabilities = [ "12.0" ];
       # Allow insecure for electron bug
-      permittedInsecurePackages = [
-        "electron-38.8.4"
-      ];
+      permittedInsecurePackages = [ "electron-38.8.4" ];
     };
   };
   boot = {
