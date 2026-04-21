@@ -15,7 +15,6 @@
     config = {
       allowUnfree = true;
       cudaSupport = true;
-      cudaCapabilities = [ "12.0" ];
       # Allow insecure for electron bug
       permittedInsecurePackages = [ "electron-38.8.4" ];
     };

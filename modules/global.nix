@@ -19,15 +19,19 @@
       asusctl
     ];
     variables = {
+      EXTRA_LDFLAGS = "-L/lib -L${config.boot.kernelPackages.nvidiaPackages.beta}/lib";
       PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
       PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
       PLAYWRIGHT_HOST_PLATFORM_OVERRIDE = "ubuntu-24.04";
       CUDA_PATH = "${pkgs.cudatoolkit}";
+      EXTRA_CCFLAGS = "-I/usr/include";
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       LD_LIBRARY_PATH = [
+        "${config.boot.kernelPackages.nvidiaPackages.beta}/lib"
         "/run/current-system/sw/share/nix-ld/lib"
+        "${pkgs.ncurses}/lib"
       ];
     };
   };
