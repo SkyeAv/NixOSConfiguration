@@ -65,6 +65,7 @@
       tor-browser
       virt-viewer
       cloudflared
+      dotnet-sdk
       micromamba
       alsa-utils
       metasploit
