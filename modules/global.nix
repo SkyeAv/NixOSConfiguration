@@ -6,6 +6,7 @@
 {
   # Cross user configuration and programs
   fonts.packages = with pkgs; [
+    vista-fonts
     corefonts
   ];
   # Global environment
