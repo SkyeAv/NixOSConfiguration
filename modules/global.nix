@@ -68,6 +68,12 @@
     ydotool.enable = true;
     # Comma
     nix-index-database.comma.enable = true;
+    # AppImage
+    appimage = {
+      enable = true;
+      binfmt = true;
+      package = pkgs.appimage-run;
+    };
   };
   # Do not modify this
   system.stateVersion = "25.11";

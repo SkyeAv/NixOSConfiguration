@@ -53,7 +53,6 @@
       cabal-install
       dotnet-sdk_11
       wl-clipboard
-      appimage-run
       claude-code
       nixfmt-tree
       ghostscript
