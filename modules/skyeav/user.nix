@@ -66,6 +66,7 @@
       tor-browser
       virt-viewer
       cloudflared
+      dosfstools
       micromamba
       alsa-utils
       metasploit
@@ -93,6 +94,7 @@
       vesktop
       pyright
       awscli2
+      spotdl
       heroic
       pandoc
       ardour
