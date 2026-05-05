@@ -106,7 +106,10 @@
           "/run/current-system/sw"
           "/etc/systemd/system"
         ];
-        serviceConfig.ExecStart = "%h/go/bin/hyprvoice serve";
+        serviceConfig = {
+          ExecStart = "${pkgs.ydotool}/bin/ydotoold";
+          Environment = "YDOTOOL_SOCKET=/run/ydotoold/socket";
+        };
       };
       ydotool = {
         description = "Ydotool service";
