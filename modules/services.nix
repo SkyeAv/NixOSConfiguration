@@ -107,7 +107,7 @@
           "/etc/systemd/system"
         ];
         serviceConfig = {
-          ExecStart = "${pkgs.ydotool}/bin/ydotoold";
+          ExecStart = "%h/go/bin/hyprvoice serve";
           Environment = "YDOTOOL_SOCKET=/run/ydotoold/socket";
         };
       };
