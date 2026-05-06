@@ -82,14 +82,9 @@
     # Power profiles daemon
     power-profiles-daemon.enable = true;
     # Udev rules
-    udev = {
-      packages = with pkgs; [
-        mixxx
-      ];
-      extraRules = ''
-        KERNEL=="uinput", MODE="0660", GROUP="ydotool", OPTIONS+="static_node=uinput"
-      '';
-    };
+    udev.packages = with pkgs; [
+      mixxx
+    ];
   };
   # Systemd
   systemd = {
@@ -98,27 +93,20 @@
     };
     # User services
     user.services = {
-      ydotool = {
-        description = "ydotoold daemon";
-        wantedBy = [ "default.target" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.ydotool}/bin/ydotoold --socket-path=%t/ydotoold.socket";
-          Restart = "always";
-        };
-      };
       hyprvoice = {
         description = "Hyprvoice service";
-        wantedBy = [ "default.target" ];
-        after = [ "ydotool.service" ];
-        requires = [ "ydotool.service" ];
+        wantedBy = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
         path = [
           "/etc/profiles/per-user/skyeav"
           "/run/current-system/sw"
         ];
         serviceConfig = {
           ExecStart = "%h/go/bin/hyprvoice serve";
-          Environment = "YDOTOOL_SOCKET=%t/ydotoold.socket";
+          Environment = "YDOTOOL_SOCKET=/run/ydotoold/socket";
           Restart = "on-failure";
+          RestartSec = 5;
         };
       };
     };

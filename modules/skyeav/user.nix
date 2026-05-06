@@ -122,6 +122,7 @@
       procs
       bisq2
       bazel
+      vllm
       scdl
       ruff
       nmap
