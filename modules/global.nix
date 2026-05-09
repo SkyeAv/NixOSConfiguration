@@ -21,7 +21,6 @@
     variables = {
       EXTRA_LDFLAGS = "-L/lib -L${config.boot.kernelPackages.nvidiaPackages.beta}/lib";
       PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
-      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
       PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
       PLAYWRIGHT_HOST_PLATFORM_OVERRIDE = "ubuntu-24.04";
       CUDA_PATH = "${pkgs.cudatoolkit}";

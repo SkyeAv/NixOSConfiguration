@@ -127,8 +127,6 @@
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
-    # Nvidia containers
-    nvidia-container-toolkit.enable = true;
   };
   # Zram
   zramSwap = {
