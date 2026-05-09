@@ -55,7 +55,7 @@
       enable = true;
       package = pkgs.ollama-cuda;
       environmentVariables = {
-        OLLAMA_KV_CACHE_TYPE = "q8_0";
+        OLLAMA_KV_CACHE_TYPE = "q4_0";
         OLLAMA_FLASH_ATTENTION = "1";
       };
     };

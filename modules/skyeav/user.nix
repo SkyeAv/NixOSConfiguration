@@ -71,8 +71,8 @@
       micromamba
       alsa-utils
       metasploit
+      pkg-config
       python314
-      python311
       nodejs_24
       wireshark
       fastfetch
@@ -90,7 +90,6 @@
       nix-diff
       qrencode
       # rstudio BROKEN FOR NOW
-      openssl
       gnumake
       ripgrep
       zoom-us
