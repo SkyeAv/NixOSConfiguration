@@ -39,7 +39,6 @@
     packages = with pkgs; [
       beamMinimal28Packages.elixir_1_19
       playwright-driver.browsers
-      python313Packages.python
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
       nvtopPackages.nvidia
@@ -73,6 +72,7 @@
       alsa-utils
       metasploit
       python314
+      python311
       nodejs_24
       wireshark
       fastfetch
