@@ -78,6 +78,7 @@
       xdg-utils
       libnotify
       julia-bin
+      llama-cpp
       # recordbox BROKEN FOR NOW
       opencode
       qpwgraph
