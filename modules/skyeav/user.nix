@@ -66,6 +66,7 @@
       tor-browser
       virt-viewer
       cloudflared
+      easyeffects
       bubblewrap
       dosfstools
       micromamba
