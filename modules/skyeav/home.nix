@@ -63,8 +63,6 @@
           enable = true;
           enableZshIntegration = true;
         };
-        # Nushell
-        nushell.enable = true;
         # Zed configuration
         zed-editor = {
           enable = true;
@@ -75,11 +73,9 @@
             "git-firefly"
             "ayu-darker"
             "dockerfile"
-            "haskell"
             "elixir"
             "julia"
             "latex"
-            "ocaml"
             "proto"
             "perl"
             "make"
@@ -89,7 +85,6 @@
             "nim"
             "nix"
             "lua"
-            "nu"
           ];
           installRemoteServer = true;
           userSettings = {
@@ -154,7 +149,6 @@
               ms-toolsai.jupyter-renderers
               pkief.material-icon-theme
               ms-toolsai.jupyter-keymap
-              julialang.language-julia
               james-yu.latex-workshop
               ms-toolsai.jupyter
               ms-python.python

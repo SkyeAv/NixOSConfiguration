@@ -48,10 +48,7 @@
       telegram-desktop
       elmPackages.elm
       signal-desktop
-      datafusion-cli
       podman-compose
-      cabal-install
-      dotnet-sdk_11
       wl-clipboard
       claude-code
       nixfmt-tree
@@ -61,21 +58,15 @@
       libreoffice
       imagemagick
       pavucontrol
-      aircrack-ng
       antigravity
       tor-browser
       virt-viewer
       cloudflared
       easyeffects
-      bubblewrap
       dosfstools
-      micromamba
       alsa-utils
-      metasploit
-      pkg-config
       python314
       nodejs_24
-      wireshark
       fastfetch
       xdg-utils
       libnotify
@@ -84,7 +75,6 @@
       # recordbox BROKEN FOR NOW
       opencode
       qpwgraph
-      foremost
       mangohud
       usbutils
       pciutils
@@ -97,11 +87,8 @@
       vesktop
       pyright
       awscli2
-      spotdl
       heroic
       pandoc
-      ardour
-      logseq
       ffmpeg
       libzip
       duckdb
@@ -113,40 +100,29 @@
       mixxx
       pdftk
       rsync
-      hping
       unzip
-      ocaml
       slack
       cmake
       ninja
-      ngrok
       wtype
       procs
-      bisq2
-      bazel
-      vllm
       scdl
       ruff
-      nmap
       file
       htop
       curl
-      opam
       dune
       wget
       lshw
       gawk
       btop
       dust
-      love
       tree
       prek
       zlib
-      pipx
       perl
       nixd
       nil
-      ghc
       duf
       fzf
       zip
@@ -158,7 +134,6 @@
       bun
       lua
       tor
-      dig
       fd
       jq
       go
