@@ -53,7 +53,7 @@
     # Ollama
     ollama = {
       enable = true;
-      package = pkgs.ollama-cuda;
+      package = pkgs.ollama-vulkan;
       environmentVariables = {
         OLLAMA_KV_CACHE_TYPE = "q4_0";
         OLLAMA_FLASH_ATTENTION = "1";
