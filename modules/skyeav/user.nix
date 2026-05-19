@@ -46,6 +46,7 @@
       kdePackages.kzones
       bitwarden-desktop
       telegram-desktop
+      llama-cpp-vulkan
       elmPackages.elm
       signal-desktop
       podman-compose
@@ -72,7 +73,6 @@
       xdg-utils
       libnotify
       julia-bin
-      llama-cpp
       # recordbox BROKEN FOR NOW
       opencode
       qpwgraph
