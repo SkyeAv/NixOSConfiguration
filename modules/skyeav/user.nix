@@ -49,6 +49,7 @@
       elmPackages.elm
       signal-desktop
       podman-compose
+      cabal-install
       wl-clipboard
       claude-code
       nixfmt-tree
@@ -134,6 +135,7 @@
       bun
       lua
       tor
+      ghc
       fd
       jq
       go
