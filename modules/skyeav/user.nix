@@ -45,6 +45,7 @@
       rPackages.tidyverse
       kdePackages.kzones
       bitwarden-desktop
+      rPackages.duckdb
       telegram-desktop
       llama-cpp-vulkan
       rPackages.ggraph
