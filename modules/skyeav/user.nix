@@ -42,13 +42,10 @@
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
       nvtopPackages.nvidia
-      rPackages.tidyverse
       kdePackages.kzones
       bitwarden-desktop
-      rPackages.duckdb
       telegram-desktop
       llama-cpp-vulkan
-      rPackages.ggraph
       elmPackages.elm
       signal-desktop
       podman-compose
