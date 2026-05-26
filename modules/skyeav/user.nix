@@ -47,6 +47,7 @@
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
+      rPackages.ggraph
       elmPackages.elm
       signal-desktop
       podman-compose
