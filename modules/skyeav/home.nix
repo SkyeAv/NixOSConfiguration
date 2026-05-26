@@ -85,6 +85,7 @@
             "nim"
             "nix"
             "lua"
+            "R"
           ];
           installRemoteServer = true;
           userSettings = {
