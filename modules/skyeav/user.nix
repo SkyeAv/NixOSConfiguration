@@ -135,6 +135,7 @@
       lua
       tor
       ghc
+      yed
       fd
       jq
       go
