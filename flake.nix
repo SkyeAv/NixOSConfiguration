@@ -1,7 +1,7 @@
 {
   description = ''
     SL Goetz NixOS
-    skyeav@skyemac
+    skyeav@skyetop
     26.05 (Yarara) x86_64
     03-19-2026
   '';
