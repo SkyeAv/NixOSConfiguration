@@ -38,6 +38,7 @@
     # User package configuration
     packages = with pkgs; [
       beamMinimal28Packages.elixir_1_19
+      beamMinimal28Packages.livebook
       playwright-driver.browsers
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
