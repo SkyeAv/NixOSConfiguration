@@ -75,6 +75,7 @@
       julia-bin
       # recordbox BROKEN FOR NOW
       opencode
+      graphviz
       qpwgraph
       mangohud
       usbutils
