@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -37,6 +38,7 @@
     ];
     # User package configuration
     packages = with pkgs; [
+      inputs.agent-of-empires.packages.${pkgs.system}.default
       beamMinimal28Packages.elixir_1_19
       beamMinimal28Packages.livebook
       playwright-driver.browsers
