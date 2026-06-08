@@ -26,6 +26,7 @@
     };
     agent-of-empires = {
       url = "github:agent-of-empires/agent-of-empires";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
