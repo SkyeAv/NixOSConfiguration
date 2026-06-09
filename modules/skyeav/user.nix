@@ -110,6 +110,7 @@
       ninja
       wtype
       procs
+      lmms
       scdl
       ruff
       file
