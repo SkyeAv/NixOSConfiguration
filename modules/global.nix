@@ -47,7 +47,8 @@
       libraries = with pkgs; [
         config.boot.kernelPackages.nvidiaPackages.beta
         stdenv.cc.cc.lib
-        openssl.dev
+        openssl.dev'
+        portaudio
       ];
     };
     # Subuid support
