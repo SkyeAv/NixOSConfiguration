@@ -17,6 +17,7 @@
       xmlstarlet
       coreutils
       asusctl
+      cacert
     ];
     variables = {
       EXTRA_LDFLAGS = "-L/lib -L${config.boot.kernelPackages.nvidiaPackages.beta}/lib";
@@ -27,6 +28,7 @@
       EXTRA_CCFLAGS = "-I/usr/include";
     };
     sessionVariables = {
+      SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       NIXOS_OZONE_WL = "1";
       LD_LIBRARY_PATH = [
         "${config.boot.kernelPackages.nvidiaPackages.beta}/lib"
