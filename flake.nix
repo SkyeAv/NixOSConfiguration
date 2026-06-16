@@ -34,9 +34,8 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
       flake.nixosConfigurations.skyeav = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        stdenv.hostPlatform.system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./modules/hardware.nix
