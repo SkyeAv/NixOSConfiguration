@@ -7,6 +7,7 @@
 {
   # Kernel, boot, hardware, and OS configuration
   nixpkgs = {
+    hostPlatform = "x86_64-linux";
     overlays = [
       inputs.neovim-nightly-overlay.overlays.default
       inputs.nix-cachyos-kernel.overlays.pinned

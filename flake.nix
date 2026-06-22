@@ -28,7 +28,6 @@
     };
     agent-of-empires = {
       url = "github:agent-of-empires/agent-of-empires";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
@@ -36,7 +35,6 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       flake.nixosConfigurations.skyeav = inputs.nixpkgs.lib.nixosSystem {
-        stdenv.hostPlatform.system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./modules/hardware.nix
