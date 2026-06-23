@@ -70,6 +70,7 @@
       easyeffects
       dosfstools
       alsa-utils
+      postgresql
       python314
       nodejs_24
       fastfetch
