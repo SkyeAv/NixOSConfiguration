@@ -71,6 +71,7 @@
       dosfstools
       alsa-utils
       postgresql
+      cassandra
       python314
       nodejs_24
       fastfetch
