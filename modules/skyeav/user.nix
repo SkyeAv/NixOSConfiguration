@@ -130,6 +130,7 @@
       zlib
       perl
       nixd
+      apci
       nil
       duf
       fzf
