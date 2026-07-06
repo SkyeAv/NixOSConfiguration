@@ -40,7 +40,6 @@
     packages = with pkgs; [
       inputs.agent-of-empires.packages.${pkgs.system}.aoe-with-web
       beamMinimal28Packages.elixir_1_19
-      beamMinimal28Packages.livebook
       playwright-driver.browsers
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
@@ -49,7 +48,6 @@
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
-      elmPackages.elm
       cloudflare-warp
       signal-desktop
       podman-compose
@@ -63,22 +61,18 @@
       libreoffice
       imagemagick
       pavucontrol
-      antigravity
-      tor-browser
       virt-viewer
       cloudflared
       easyeffects
       dosfstools
       alsa-utils
       postgresql
-      cassandra
       python314
       nodejs_24
       fastfetch
       xdg-utils
       libnotify
       julia-bin
-      # recordbox BROKEN FOR NOW
       opencode
       graphviz
       qpwgraph
@@ -87,7 +81,6 @@
       pciutils
       nix-diff
       qrencode
-      # rstudio BROKEN FOR NOW
       gnumake
       ripgrep
       zoom-us
@@ -119,7 +112,6 @@
       file
       htop
       curl
-      dune
       wget
       lshw
       gawk
@@ -141,16 +133,12 @@
       nim
       bat
       bun
-      lua
-      tor
       ghc
-      yed
       fd
       jq
       go
       gh
       uv
-      R
     ];
   };
 }

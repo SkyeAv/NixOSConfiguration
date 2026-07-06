@@ -28,7 +28,6 @@
           shellAliases = {
             amphetamine = ''systemd-inhibit --what=idle:sleep --why="Presentation" sleep infinity'';
             rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
-            skyemac = "ssh skyeav@192.168.1.6";
             zed = "zeditor";
             ps = "procs";
             top = "htop";
@@ -76,7 +75,6 @@
             "elixir"
             "julia"
             "latex"
-            "proto"
             "perl"
             "make"
             "toml"
@@ -84,8 +82,6 @@
             "log"
             "nim"
             "nix"
-            "lua"
-            "R"
           ];
           installRemoteServer = true;
           userSettings = {
@@ -135,26 +131,6 @@
             bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
             bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
           '';
-        };
-        # VSCode configuration
-        vscode = {
-          enable = true;
-          package = pkgs.vscode;
-          mutableExtensionsDir = true;
-          profiles.default = {
-            enableUpdateCheck = true;
-            enableExtensionUpdateCheck = true;
-            extensions = with pkgs.vscode-extensions; [
-              ms-toolsai.vscode-jupyter-slideshow
-              ms-toolsai.vscode-jupyter-cell-tags
-              ms-toolsai.jupyter-renderers
-              pkief.material-icon-theme
-              ms-toolsai.jupyter-keymap
-              james-yu.latex-workshop
-              ms-toolsai.jupyter
-              ms-python.python
-            ];
-          };
         };
       };
     };

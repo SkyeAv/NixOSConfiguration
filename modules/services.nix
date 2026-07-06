@@ -63,19 +63,8 @@
     fcron = {
       enable = true;
       systab = ''
-        # OS BACKUP TO LOCAL SERVER
-        @ 20:00 & bootrun(true) rsync -av --no-compress --exclude="Backups" --delete /home/skyeav/ skyeav@192.168.1.6:/Users/skyeav/Backups/SkyeTop
+        # PLACEHOLDER UNTIL HOME SERVER SETUP
       '';
-    };
-    # I2P support
-    i2pd = {
-      enable = true;
-      address = "0.0.0.0";
-      proto = {
-        http.enable = true;
-        socksProxy.enable = true;
-        httpProxy.enable = true;
-      };
     };
     # SSH
     openssh.enable = true;
