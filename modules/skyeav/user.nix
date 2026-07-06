@@ -24,18 +24,7 @@
       "audio"
     ];
     # Ranges for podman
-    subGidRanges = [
-      {
-        count = 65536;
-        startGid = 100000;
-      }
-    ];
-    subUidRanges = [
-      {
-        count = 65536;
-        startUid = 100000;
-      }
-    ];
+    autoSubUidGidRange = true;
     # User package configuration
     packages = with pkgs; [
       inputs.agent-of-empires.packages.${pkgs.system}.aoe-with-web
