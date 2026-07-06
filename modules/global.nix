@@ -16,6 +16,8 @@
       openconnect
       xmlstarlet
       coreutils
+      minikube
+      kubectl
       asusctl
       cacert
     ];
