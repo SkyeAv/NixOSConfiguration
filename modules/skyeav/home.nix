@@ -62,6 +62,10 @@
           enable = true;
           enableZshIntegration = true;
         };
+        # Nushell
+        nushell = {
+          enable = true;
+        };
         # Zed configuration
         zed-editor = {
           enable = true;
