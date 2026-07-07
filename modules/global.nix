@@ -17,6 +17,7 @@
       xmlstarlet
       coreutils
       minikube
+      nssTools
       kubectl
       asusctl
       cacert
