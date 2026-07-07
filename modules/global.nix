@@ -12,6 +12,7 @@
   # Global environment
   environment = {
     systemPackages = with pkgs; [
+      wireguard-tools
       supergfxctl
       openconnect
       xmlstarlet
