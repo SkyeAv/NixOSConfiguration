@@ -2,3 +2,4 @@
 *.opencode/
 *result
 *.claude
+*.logs
