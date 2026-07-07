@@ -123,6 +123,7 @@
       bat
       bun
       ghc
+      lua
       fd
       jq
       go
