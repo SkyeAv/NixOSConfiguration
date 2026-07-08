@@ -82,6 +82,17 @@
     };
     # User services
     user.services = {
+      supermemory-proxy = {
+        description = "Supermemory Cloudflare Access header-injecting nginx proxy";
+        wantedBy = [ "default.target" ];
+        after = [ "network-online.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.nginx}/bin/nginx -c %h/.config/opencode/nginx/nginx.conf -g 'daemon off;'";
+          ExecReload = "${pkgs.nginx}/bin/nginx -c %h/.config/opencode/nginx/nginx.conf -s reload";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+      };
       hyprvoice = {
         description = "Hyprvoice service";
         wantedBy = [ "graphical-session.target" ];
