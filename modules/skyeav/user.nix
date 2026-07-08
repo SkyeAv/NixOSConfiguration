@@ -70,6 +70,7 @@
       pciutils
       nix-diff
       qrencode
+      openscad
       gnumake
       ripgrep
       zoom-us
