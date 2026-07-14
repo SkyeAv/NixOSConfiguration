@@ -17,7 +17,7 @@
       allowUnfree = true;
       cudaSupport = true;
       # Allow insecure for electron bug
-      permittedInsecurePackages = [ "electron-38.8.4" ];
+      permittedInsecurePackages = [ "electron-39.8.10" ];
     };
   };
   boot = {
