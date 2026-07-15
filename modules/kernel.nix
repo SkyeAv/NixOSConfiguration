@@ -27,7 +27,7 @@
       efi.canTouchEfiVariables = true;
     };
     # Catchy-os kernel
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto-zen4;
     kernelParams = [
       "rd.systemd.show_status=false"
       "transparent_hugepage=always"
