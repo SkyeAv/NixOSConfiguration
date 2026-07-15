@@ -46,7 +46,6 @@
     zsh.enable = true;
     # Firefox
     firefox.enable = true;
-    thunderbird.enable = true;
     # Links compilers to fhs locations
     nix-ld = {
       enable = true;
