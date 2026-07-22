@@ -35,6 +35,7 @@
       kdePackages.libkscreen
       nvtopPackages.nvidia
       kdePackages.kzones
+      pi-pi-coding-agent
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
