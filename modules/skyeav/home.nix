@@ -29,7 +29,6 @@
             amphetamine = ''systemd-inhibit --what=idle:sleep --why="Presentation" sleep infinity'';
             rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
             zed = "zeditor";
-            pi = "npx pi";
             ps = "procs";
             top = "htop";
             du = "dust";
