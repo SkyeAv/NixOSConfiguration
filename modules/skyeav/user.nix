@@ -38,7 +38,6 @@
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
-      pi-coding-agent
       cloudflare-warp
       signal-desktop
       podman-compose
