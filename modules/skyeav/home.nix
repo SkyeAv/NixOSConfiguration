@@ -133,6 +133,7 @@
           extraConfig = ''
             set -g mode-keys vi
             set -g extended-keys on
+            set -g extended-keys-format csi-u
 
             bind-key -T copy-mode-vi v send-keys -X begin-selection
             bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
