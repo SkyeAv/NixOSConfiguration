@@ -64,6 +64,7 @@
       xdg-utils
       libnotify
       julia-bin
+      qwen-code
       opencode
       graphviz
       qpwgraph
