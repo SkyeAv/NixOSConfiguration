@@ -54,6 +54,7 @@
       virt-viewer
       cloudflared
       easyeffects
+      docker-sbx
       dosfstools
       alsa-utils
       postgresql
