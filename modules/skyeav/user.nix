@@ -29,6 +29,7 @@
     packages = with pkgs; [
       inputs.agent-of-empires.packages.${pkgs.system}.aoe-with-web
       beamMinimal28Packages.elixir_1_19
+      beamMinimal28Packages.elixir-ls
       playwright-driver.browsers
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
@@ -86,6 +87,7 @@
       libgcc
       psmisc
       rustup
+      rust-analyzer
       drawio
       mixxx
       pdftk
@@ -99,6 +101,7 @@
       lmms
       scdl
       ruff
+      yaml-language-server
       file
       htop
       curl
@@ -128,6 +131,7 @@
       fd
       jq
       go
+      gopls
       gh
       uv
     ];
