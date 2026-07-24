@@ -28,7 +28,6 @@
     # User package configuration
     packages = with pkgs; [
       inputs.agent-of-empires.packages.${pkgs.system}.aoe-with-web
-      inputs.hermes-agent.packages.${pkgs.system}.default
       beamMinimal28Packages.elixir_1_19
       playwright-driver.browsers
       cudaPackages.cudatoolkit
@@ -64,8 +63,6 @@
       xdg-utils
       libnotify
       julia-bin
-      qwen-code
-      opencode
       graphviz
       qpwgraph
       mangohud
