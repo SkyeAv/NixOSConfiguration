@@ -15,7 +15,14 @@
         sessionPath = [
           "$HOME/.local/bin"
           "$HOME/go/bin"
+          "$HOME/.cargo/bin"
         ];
+        # Route all cargo builds through kache. Absolute path => works in ANY shell
+        # (pi agents / non-login bash have no ~/.cargo/bin on PATH).
+        file.".cargo/config.toml".text = ''
+          [build]
+          rustc-wrapper = "/home/skyeav/.cargo/bin/kache"
+        '';
       };
       programs = {
         # Zsh configuration
@@ -139,6 +146,27 @@
             bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
             bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
           '';
+        };
+      };
+      # Kache content-addressed build cache daemon (cargo-installed; not in nixpkgs)
+      systemd.user = {
+        # Restart changed user services on `rebuild` instead of waiting for next login
+        startServices = "sd-switch";
+        services.kache = {
+          Unit = {
+            Description = "kache build cache daemon";
+            After = [ "default.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "/home/skyeav/.cargo/bin/kache daemon run";
+            Restart = "on-failure";
+            RestartSec = "5s";
+            Environment = [ "KACHE_LOG=kache=info" ];
+          };
+          Install = {
+            WantedBy = [ "default.target" ];
+          };
         };
       };
     };
