@@ -64,6 +64,7 @@
       xdg-utils
       libnotify
       julia-bin
+      ast-grep
       graphviz
       qpwgraph
       mangohud
