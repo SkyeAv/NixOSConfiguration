@@ -81,21 +81,42 @@
       NetworkManager-wait-online.enable = false;
     };
     # User services
-    user.services = {
-      hyprvoice = {
-        description = "Hyprvoice service";
-        wantedBy = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        path = [
-          "/etc/profiles/per-user/skyeav"
-          "/run/current-system/sw"
-        ];
-        serviceConfig = {
-          ExecStart = "%h/go/bin/hyprvoice serve";
-          Environment = "YDOTOOL_SOCKET=/run/ydotoold/socket";
-          Restart = "on-failure";
-          RestartSec = 5;
+    user = {
+      # Restart changed user services on `rebuild` instead of waiting for next login
+      startServices = "sd-switch";
+      services = {
+        # Kache content-addressed build cache daemon (cargo-installed; not in nixpkgs)
+        kache = {
+          Unit = {
+            Description = "kache build cache daemon";
+            After = [ "default.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "/home/skyeav/.cargo/bin/kache daemon run";
+            Restart = "on-failure";
+            RestartSec = "5s";
+            Environment = [ "KACHE_LOG=kache=info" ];
+          };
+          Install = {
+            WantedBy = [ "default.target" ];
+          };
+        };
+        hyprvoice = {
+          description = "Hyprvoice service";
+          wantedBy = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          partOf = [ "graphical-session.target" ];
+          path = [
+            "/etc/profiles/per-user/skyeav"
+            "/run/current-system/sw"
+          ];
+          serviceConfig = {
+            ExecStart = "%h/go/bin/hyprvoice serve";
+            Environment = "YDOTOOL_SOCKET=/run/ydotoold/socket";
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
         };
       };
     };

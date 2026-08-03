@@ -34,6 +34,7 @@
       typescript-language-server
       cudaPackages.cudatoolkit
       kdePackages.libkscreen
+      yaml-language-server
       nvtopPackages.nvidia
       kdePackages.kzones
       bitwarden-desktop
@@ -42,7 +43,7 @@
       cloudflare-warp
       signal-desktop
       podman-compose
-      cabal-install
+      rust-analyzer
       wl-clipboard
       claude-code
       nixfmt-tree
@@ -64,7 +65,6 @@
       fastfetch
       xdg-utils
       libnotify
-      julia-bin
       ast-grep
       graphviz
       qpwgraph
@@ -85,12 +85,11 @@
       ffmpeg
       libzip
       duckdb
-      nimble
       libgcc
       psmisc
       rustup
-      rust-analyzer
       drawio
+      gopls
       mixxx
       pdftk
       rsync
@@ -100,10 +99,8 @@
       ninja
       wtype
       procs
-      lmms
       scdl
       ruff
-      yaml-language-server
       file
       htop
       curl
@@ -125,7 +122,6 @@
       gcc
       git
       eza
-      nim
       bat
       bun
       ghc
@@ -133,9 +129,9 @@
       fd
       jq
       go
-      gopls
       gh
       uv
+      yq
     ];
   };
 }
