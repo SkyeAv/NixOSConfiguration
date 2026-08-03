@@ -77,13 +77,13 @@
   };
   # Systemd
   systemd = {
+    # Restart changed user services on `rebuild` instead of waiting for next login
+    startServices = "sd-switch";
     services = {
       NetworkManager-wait-online.enable = false;
     };
     # User services
     user = {
-      # Restart changed user services on `rebuild` instead of waiting for next login
-      startServices = "sd-switch";
       services = {
         # Kache content-addressed build cache daemon (cargo-installed; not in nixpkgs)
         kache = {
