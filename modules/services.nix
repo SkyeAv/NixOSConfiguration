@@ -85,19 +85,13 @@
       services = {
         # Kache content-addressed build cache daemon (cargo-installed; not in nixpkgs)
         kache = {
-          Unit = {
-            Description = "kache build cache daemon";
-            After = [ "default.target" ];
-          };
-          Service = {
-            Type = "simple";
-            ExecStart = "/home/skyeav/.cargo/bin/kache daemon run";
+          description = "Kache build cache daemon";
+          wantedBy = [ "default.target" ];
+          serviceConfig = {
+            ExecStart = "%h/.cargo/bin/kache daemon run";
+            Environment = "KACHE_LOG=kache=info";
             Restart = "on-failure";
-            RestartSec = "5s";
-            Environment = [ "KACHE_LOG=kache=info" ];
-          };
-          Install = {
-            WantedBy = [ "default.target" ];
+            RestartSec = 5;
           };
         };
         hyprvoice = {
