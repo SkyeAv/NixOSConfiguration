@@ -77,8 +77,6 @@
   };
   # Systemd
   systemd = {
-    # Restart changed user services on `rebuild` instead of waiting for next login
-    startServices = "sd-switch";
     services = {
       NetworkManager-wait-online.enable = false;
     };
