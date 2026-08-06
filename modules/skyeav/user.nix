@@ -126,6 +126,7 @@
       bun
       ghc
       lua
+      lz4
       fd
       jq
       go
