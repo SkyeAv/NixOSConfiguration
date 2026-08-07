@@ -89,6 +89,7 @@
       psmisc
       rustup
       drawio
+      aria2
       gopls
       mixxx
       pdftk
