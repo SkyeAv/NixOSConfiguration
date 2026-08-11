@@ -60,6 +60,7 @@
       dosfstools
       alsa-utils
       postgresql
+      clickhouse
       python314
       nodejs_24
       fastfetch
