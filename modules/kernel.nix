@@ -17,7 +17,10 @@
       allowUnfree = true;
       cudaSupport = true;
       # Allow insecure for electron bug
-      permittedInsecurePackages = [ "electron-39.8.10" ];
+      permittedInsecurePackages = [
+        "webull-desktop-9.3.0"
+        "electron-39.8.10"
+      ];
     };
   };
   boot = {
