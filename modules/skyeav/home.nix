@@ -92,7 +92,6 @@
             "toml"
             "ruff"
             "log"
-            "nim"
             "nix"
           ];
           installRemoteServer = true;
