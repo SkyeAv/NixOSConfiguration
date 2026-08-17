@@ -118,6 +118,7 @@
       perl
       nixd
       acpi
+      mill
       nil
       duf
       fzf
@@ -130,6 +131,7 @@
       ghc
       lua
       lz4
+      jdk
       fd
       jq
       go
