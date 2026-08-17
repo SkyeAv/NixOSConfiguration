@@ -14,9 +14,9 @@
         # Append vars to path
         sessionPath = [
           "$HOME/.kimi-code/bin"
+          "$HOME/.cargo/bin"
           "$HOME/.local/bin"
           "$HOME/go/bin"
-          "$HOME/.cargo/bin"
         ];
         # Route all cargo builds through kache. Absolute path => works in ANY shell
         # (pi agents / non-login bash have no ~/.cargo/bin on PATH).
