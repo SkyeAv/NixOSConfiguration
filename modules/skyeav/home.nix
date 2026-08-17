@@ -35,10 +35,7 @@
           # Zsh aliases
           shellAliases = {
             amphetamine = ''systemd-inhibit --what=idle:sleep --why="Presentation" sleep infinity'';
-            gateway = "ssh -J sgoetz@gateway.systemsbiology.net sgoetz@wenceslaus";
             rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
-            wenceslaus = "ssh sgoetz@wenceslaus";
-            ht1 = "ssh goetzs@ht1.renci.org";
             zed = "zeditor";
             pi = "npx pi";
             ps = "procs";
