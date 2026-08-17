@@ -57,6 +57,7 @@
       virt-viewer
       cloudflared
       easyeffects
+      nats-server
       docker-sbx
       dosfstools
       alsa-utils
