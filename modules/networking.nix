@@ -10,6 +10,7 @@
       enable = true;
       # MT7925 sleeps between DTIM beacons otherwise; costs ~25ms of latency jitter
       wifi.powersave = false;
+      dns = "systemd-resolved";
       plugins = with pkgs; [
         networkmanager-openconnect
       ];
@@ -21,6 +22,21 @@
         4447
         4444
       ];
+    };
+  };
+  # DHCP hands out a dead secondary resolver (205.171.2.65, times out at 6s).
+  # glibc walks nameservers in order with no memory of failures, so every miss
+  # the router drops costs two 5s timeouts -- page loads were stalling 10-35s.
+  # resolved caches, tracks per-server failure, and does split-DNS for the VPN.
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      FallbackDNS = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
+      DNSOverTLS = false;
+      DNSSEC = false;
     };
   };
   # Without an explicit country the card boots into regdom 00, where every 5GHz
