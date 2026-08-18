@@ -29,7 +29,7 @@
       iw
     ];
     variables = {
-      EXTRA_LDFLAGS = "-L/lib -L${config.boot.kernelPackages.nvidiaPackages.beta}/lib";
+      EXTRA_LDFLAGS = "-L/lib -L${config.hardware.nvidia.package}/lib";
       PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
       PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
       PLAYWRIGHT_HOST_PLATFORM_OVERRIDE = "ubuntu-24.04";
@@ -40,7 +40,7 @@
       SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       NIXOS_OZONE_WL = "1";
       LD_LIBRARY_PATH = [
-        "${config.boot.kernelPackages.nvidiaPackages.beta}/lib"
+        "${config.hardware.nvidia.package}/lib"
         "/run/current-system/sw/share/nix-ld/lib"
         "${pkgs.ncurses}/lib"
       ];
@@ -55,7 +55,7 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        config.boot.kernelPackages.nvidiaPackages.beta
+        config.hardware.nvidia.package
         stdenv.cc.cc.lib
         openssl.dev
         portaudio
