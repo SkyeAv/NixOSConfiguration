@@ -8,7 +8,13 @@
     # Automatic nicing
     ananicy = {
       enable = true;
-      package = pkgs.ananicy-cpp;
+      # 1.2.0 relies on <cstring> arriving transitively; newer libstdc++ dropped it,
+      # so std::strerror/std::memset no longer resolve. Redundant includes are free.
+      package = pkgs.ananicy-cpp.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          find src -name '*.cpp' -exec sed -i '1i #include <cstring>\n#include <cstdint>' {} +
+        '';
+      });
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
     # X11 compatability
