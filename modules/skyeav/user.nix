@@ -12,7 +12,6 @@
     # Group configuration
     extraGroups = [
       "networkmanager"
-      "libvirtd"
       "comfyui"
       "ydotool"
       "render"
@@ -53,7 +52,6 @@
       libreoffice
       imagemagick
       pavucontrol
-      virt-viewer
       cloudflared
       easyeffects
       nats-server

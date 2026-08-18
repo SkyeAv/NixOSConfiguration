@@ -10,11 +10,6 @@
       enable = true;
       # MT7925 sleeps between DTIM beacons otherwise; costs ~25ms of latency jitter
       wifi.powersave = false;
-      # libvirt owns these; NM managing them leaks a 10.0.2.0/24 route from Whonix
-      unmanaged = [
-        "interface-name:virbr*"
-        "interface-name:vnet*"
-      ];
       plugins = with pkgs; [
         networkmanager-openconnect
       ];

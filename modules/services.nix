@@ -117,7 +117,7 @@
   security = {
     # Rtkit for audio
     rtkit.enable = true;
-    # Polkit for VMs
+    # Polkit for privilege escalation prompts
     polkit.enable = true;
   };
 }
