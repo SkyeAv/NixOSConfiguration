@@ -13,6 +13,7 @@
   environment = {
     systemPackages = with pkgs; [
       wireguard-tools
+      speedtest-cli
       supergfxctl
       openconnect
       xmlstarlet
@@ -21,7 +22,11 @@
       nssTools
       kubectl
       asusctl
+      ethtool
+      wavemon
+      iperf3
       cacert
+      iw
     ];
     variables = {
       EXTRA_LDFLAGS = "-L/lib -L${config.boot.kernelPackages.nvidiaPackages.beta}/lib";
