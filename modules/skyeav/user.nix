@@ -88,7 +88,6 @@
       psmisc
       rustup
       drawio
-      spark
       aria2
       gopls
       mixxx
