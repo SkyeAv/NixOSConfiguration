@@ -1,5 +1,6 @@
 [[repos]]
 repo = "local"
 hooks = [
-  { id = "treefmt-nix", name = "treefmt-nix", entry = "treefmt", language = "system", types = ["nix"] }
+  { id = "treefmt-nix", name = "treefmt-nix", entry = "treefmt", language = "system", types = ["nix"] },
+  { id = "nix-flake-check", name = "nix-flake-check", entry = "nix flake check --no-build --no-warn-dirty", language = "system", files = '\.nix$|flake\.lock$', pass_filenames = false },
 ]

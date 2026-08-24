@@ -137,7 +137,7 @@
   # Zram
   zramSwap = {
     enable = true;
-    algorithm = "l4z";
+    algorithm = "lz4";
     memoryPercent = 25;
   };
 }

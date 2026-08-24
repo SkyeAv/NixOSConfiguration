@@ -32,23 +32,33 @@
   };
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      flake.nixosConfigurations.skyeav = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./modules/hardware.nix
-          ./modules/skyeav/user.nix
-          inputs.home-manager.nixosModules.home-manager
-          ./modules/skyeav/home.nix
-          ./modules/settings.nix
-          ./modules/kernel.nix
-          ./modules/services.nix
-          ./modules/virtualization.nix
-          ./modules/global.nix
-          ./modules/networking.nix
-          inputs.nix-index-database.nixosModules.default
-        ];
-      };
-    };
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { self, ... }:
+      {
+        systems = [ "x86_64-linux" ];
+        # `nix flake check` builds checks.toplevel; `nix fmt` uses the formatter
+        perSystem =
+          { pkgs, ... }:
+          {
+            formatter = pkgs.nixfmt-tree;
+            checks.toplevel = self.nixosConfigurations.skyeav.config.system.build.toplevel;
+          };
+        flake.nixosConfigurations.skyeav = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./modules/hardware.nix
+            ./modules/skyeav/user.nix
+            inputs.home-manager.nixosModules.home-manager
+            ./modules/skyeav/home.nix
+            ./modules/settings.nix
+            ./modules/kernel.nix
+            ./modules/services.nix
+            ./modules/virtualization.nix
+            ./modules/global.nix
+            ./modules/networking.nix
+            inputs.nix-index-database.nixosModules.default
+          ];
+        };
+      }
+    );
 }

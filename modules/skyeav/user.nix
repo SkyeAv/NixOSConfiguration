@@ -26,7 +26,7 @@
     autoSubUidGidRange = true;
     # User package configuration
     packages = with pkgs; [
-      inputs.agent-of-empires.packages.${pkgs.system}.aoe-with-web
+      inputs.agent-of-empires.packages.${pkgs.stdenv.hostPlatform.system}.aoe-with-web
       beamMinimal28Packages.elixir_1_19
       beamMinimal28Packages.elixir-ls
       playwright-driver.browsers

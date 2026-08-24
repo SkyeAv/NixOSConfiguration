@@ -47,6 +47,7 @@
     };
   };
   programs = {
+    # Shells
     bash.enable = true;
     zsh.enable = true;
     # Firefox
@@ -61,8 +62,9 @@
         portaudio
       ];
     };
-    # Subuid support
+    # Mtr
     mtr.enable = true;
+    # GnuPG agent
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
