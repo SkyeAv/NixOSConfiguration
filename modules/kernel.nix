@@ -68,7 +68,9 @@
       options nvidia NVreg_RegistryDwords="PeerMappingOverride=1"
       options nvidia NVreg_UsePageAttributeTable=1
       options nvidia NVreg_EnableGpuFirmware=1
+      options cfg80211 ieee80211_regdom="US"
       options nvidia_drm modeset=1 fbdev=1
+      options mt7925e disable_aspm=1
     '';
     # Special boot settings
     plymouth.enable = true;
@@ -93,6 +95,7 @@
   };
   # Hardware configuration
   hardware = {
+    wirelessRegulatoryDatabase = true;
     enableAllFirmware = true;
     steam-hardware.enable = true;
     acpilight.enable = true;

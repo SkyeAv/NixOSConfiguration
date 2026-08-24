@@ -85,6 +85,27 @@
   systemd = {
     services = {
       NetworkManager-wait-online.enable = false;
+      resolved = {
+        enable = true;
+        settings.Resolve = {
+          FallbackDNS = [
+            "1.1.1.1"
+            "8.8.8.8"
+          ];
+          DNSOverTLS = false;
+          DNSSEC = false;
+        };
+      };
+      wireless-regdom = {
+        description = "Set wireless regulatory domain";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "NetworkManager.service" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.iw}/bin/iw reg set US";
+        };
+      };
     };
     # User services
     user = {
