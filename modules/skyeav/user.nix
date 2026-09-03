@@ -79,7 +79,8 @@
       vesktop
       pyright
       awscli2
-      heroic
+      ghstack
+      lutris
       pandoc
       ffmpeg
       libzip
