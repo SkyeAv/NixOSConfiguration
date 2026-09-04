@@ -74,6 +74,7 @@
       nix-diff
       qrencode
       openscad
+      zoom-us
       gnumake
       ripgrep
       vesktop
