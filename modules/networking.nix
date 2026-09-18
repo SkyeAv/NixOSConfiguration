@@ -25,6 +25,11 @@
         7070
         4447
         4444
+        # relmedner flink cluster (skyetop is the jobmanager host)
+        18081 # flink web ui
+        16123 # jobmanager rpc
+        16124 # blob server
+        16125 # taskmanager shuffle (data) port
       ];
     };
   };

@@ -54,17 +54,15 @@
       pavucontrol
       cloudflared
       easyeffects
-      nats-server
-      docker-sbx
       dosfstools
       alsa-utils
       postgresql
-      clickhouse
       python314
       nodejs_24
       fastfetch
       xdg-utils
       libnotify
+      opentofu
       ast-grep
       graphviz
       qpwgraph
