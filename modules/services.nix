@@ -102,7 +102,14 @@
       '';
     };
     # SSH
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        # Server side of multiplexing: many concurrent sessions per connection.
+        # Default 10; parallel tool calls + persistent masters want headroom.
+        MaxSessions = 100000;
+      };
+    };
     # DNS resolution; FallbackDNS only applies when no link supplies its own
     resolved = {
       enable = true;
