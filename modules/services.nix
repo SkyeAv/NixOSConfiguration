@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
@@ -68,32 +67,6 @@
         OLLAMA_FLASH_ATTENTION = "1";
       };
     };
-    # Spark standalone cluster; master and worker both stay on loopback.
-    # conf/ in the store ships only .template files, so every setting here has
-    # to arrive as an environment variable rather than via spark-env.sh.
-    spark = {
-      master = {
-        enable = true;
-        bind = "127.0.0.1";
-        extraEnvironment = {
-          SPARK_MASTER_WEBUI_PORT = "8180";
-          SPARK_DAEMON_MEMORY = "1g";
-        };
-      };
-      worker = {
-        enable = true;
-        master = "127.0.0.1:7077";
-        # 15g is the executor heap, not the ceiling: the JVM adds ~10% off-heap
-        # on top of whatever executors are told they have, and the worker daemon
-        # costs another ~1.3g. That lands the cgroup at the 18G cap set below.
-        extraEnvironment = {
-          SPARK_WORKER_WEBUI_PORT = "8181";
-          SPARK_WORKER_MEMORY = "15g";
-          SPARK_DAEMON_MEMORY = "1g";
-          SPARK_WORKER_CORES = "16";
-        };
-      };
-    };
     # Fcrontab
     fcron = {
       enable = true;
@@ -141,34 +114,6 @@
           Type = "oneshot";
           RemainAfterExit = true;
           ExecStart = "${pkgs.iw}/bin/iw reg set US";
-        };
-      };
-      # Spark is on demand, not at boot: two idle JVMs cost ~2.5G for nothing.
-      # Start the cluster with `systemctl start spark-worker`, which pulls the
-      # master up with it; `systemctl stop spark-master` tears both back down.
-      spark-master = {
-        wantedBy = lib.mkForce [ ];
-        serviceConfig = {
-          CPUQuota = "100%";
-          MemoryMax = "2G";
-          CPUWeight = 50;
-          IOWeight = 50;
-        };
-      };
-      # Hard-cap Spark at 16 cores and 20G total RSS. This cgroup holds the
-      # executor pool; the master above is only a scheduler and stays tiny.
-      # CPUWeight/IOWeight keep the desktop ahead of Spark under contention.
-      spark-worker = {
-        wantedBy = lib.mkForce [ ];
-        wants = [ "spark-master.service" ];
-        after = [ "spark-master.service" ];
-        partOf = [ "spark-master.service" ];
-        serviceConfig = {
-          MemoryHigh = "17G";
-          CPUQuota = "1600%";
-          MemoryMax = "18G";
-          CPUWeight = 50;
-          IOWeight = 50;
         };
       };
     };
