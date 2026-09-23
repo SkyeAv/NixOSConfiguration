@@ -51,8 +51,8 @@
     # EarlyOOM
     earlyoom = {
       enable = true;
-      freeMemThreshold = 5;
-      freeSwapThreshold = 10;
+      freeMemThreshold = 10;
+      freeSwapThreshold = 25;
     };
     # Laptop and SSD
     asusd.enable = true;
