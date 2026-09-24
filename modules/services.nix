@@ -24,8 +24,8 @@
         layout = "us";
         variant = "";
       };
+      # NVIDIA only: in Dedicated mode the iGPU has no displays attached.
       videoDrivers = [
-        "amdgpu"
         "nvidia"
       ];
     };
@@ -56,7 +56,22 @@
     };
     # Laptop and SSD
     asusd.enable = true;
-    supergfxd.enable = true;
+    # GPU mux switch. "Dedicated" wires the internal panel to the NVIDIA dGPU and
+    # unbinds amdgpu; applied by supergfxd at boot, so a reboot is required.
+    # This file is a read-only store path, so `supergfxctl --mode` cannot persist a
+    # change at runtime: edit this attrset and rebuild instead.
+    supergfxd = {
+      enable = true;
+      settings = {
+        mode = "Dedicated";
+        vfio_enable = false;
+        vfio_save = false;
+        always_reboot = false;
+        no_logind = false;
+        logout_timeout_s = 180;
+        hotplug_type = "None";
+      };
+    };
     fstrim.enable = true;
     # Ollama
     ollama = {

@@ -120,14 +120,12 @@
       ];
     };
     # Nvidia settings
+    # No prime: the MUX is wired straight to the dGPU (services.supergfxd mode
+    # "Dedicated"), so NVIDIA drives the panel itself instead of handing frames
+    # to the iGPU for scanout.
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
-      prime = {
-        sync.enable = true;
-        nvidiaBusId = "PCI:100:0:0";
-        amdgpuBusId = "PCI:101:0:0";
-      };
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
