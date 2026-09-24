@@ -56,14 +56,16 @@
     };
     # Laptop and SSD
     asusd.enable = true;
-    # GPU mux switch. "Dedicated" wires the internal panel to the NVIDIA dGPU and
-    # unbinds amdgpu; applied by supergfxd at boot, so a reboot is required.
-    # This file is a read-only store path, so `supergfxctl --mode` cannot persist a
-    # change at runtime: edit this attrset and rebuild instead.
+    # GPU mux. "AsusMuxDgpu" = internal panel wired to the NVIDIA dGPU. The mux
+    # itself is firmware state (asus-armoury gpu_mux_mode, 0 = dGPU): supergfxd
+    # only trusts it at boot and falls back to Hybrid when it reads 1 (Optimus).
+    # Flip it once with `supergfxctl --mode AsusMuxDgpu` + reboot; it persists.
+    # Activation re-copies this conf (mode 0644), overriding runtime edits.
+    # Valid modes: Hybrid Integrated NvidiaNoModeset Vfio AsusEgpu AsusMuxDgpu.
     supergfxd = {
       enable = true;
       settings = {
-        mode = "Dedicated";
+        mode = "AsusMuxDgpu";
         vfio_enable = false;
         vfio_save = false;
         always_reboot = false;
