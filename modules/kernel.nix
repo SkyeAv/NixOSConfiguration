@@ -129,7 +129,9 @@
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      # production (595.x), not latest (610.57.04): 610 throws Xid 31 MMU faults
+      # under vkd3d-proton (NVIDIA/open-gpu-kernel-modules#1370). Revisit on 615+.
+      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
   };
   # Zram
