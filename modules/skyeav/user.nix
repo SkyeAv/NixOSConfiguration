@@ -39,6 +39,7 @@
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
+      elmPackages.elm
       cloudflare-warp
       signal-desktop
       podman-compose
