@@ -8,8 +8,6 @@
     # Automatic nicing
     ananicy = {
       enable = true;
-      # 1.2.0 relies on <cstring> arriving transitively; newer libstdc++ dropped it,
-      # so std::strerror/std::memset no longer resolve. Redundant includes are free.
       package = pkgs.ananicy-cpp.overrideAttrs (old: {
         postPatch = (old.postPatch or "") + ''
           find src -name '*.cpp' -exec sed -i '1i #include <cstring>\n#include <cstdint>' {} +
@@ -56,24 +54,7 @@
     };
     # Laptop and SSD
     asusd.enable = true;
-    # GPU mux. "AsusMuxDgpu" = internal panel wired to the NVIDIA dGPU. The mux
-    # itself is firmware state (asus-armoury gpu_mux_mode, 0 = dGPU): supergfxd
-    # only trusts it at boot and falls back to Hybrid when it reads 1 (Optimus).
-    # Flip it once with `supergfxctl --mode AsusMuxDgpu` + reboot; it persists.
-    # Activation re-copies this conf (mode 0644), overriding runtime edits.
-    # Valid modes: Hybrid Integrated NvidiaNoModeset Vfio AsusEgpu AsusMuxDgpu.
-    supergfxd = {
-      enable = true;
-      settings = {
-        mode = "AsusMuxDgpu";
-        vfio_enable = false;
-        vfio_save = false;
-        always_reboot = false;
-        no_logind = false;
-        logout_timeout_s = 180;
-        hotplug_type = "None";
-      };
-    };
+    supergfxd.enable = true;
     fstrim.enable = true;
     # Fcrontab
     fcron = {

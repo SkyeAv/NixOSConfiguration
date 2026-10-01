@@ -120,18 +120,13 @@
       ];
     };
     # Nvidia settings
-    # No prime: the MUX is wired straight to the dGPU (services.supergfxd mode
-    # "AsusMuxDgpu"), so NVIDIA drives the panel itself instead of handing frames
-    # to the iGPU for scanout.
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
-      # production (595.x), not latest (610.57.04): 610 throws Xid 31 MMU faults
-      # under vkd3d-proton (NVIDIA/open-gpu-kernel-modules#1370). Revisit on 615+.
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
   # Zram
