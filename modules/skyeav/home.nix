@@ -18,8 +18,7 @@
           "$HOME/.local/bin"
           "$HOME/go/bin"
         ];
-        # Route all cargo builds through kache. Absolute path => works in ANY shell
-        # (pi agents / non-login bash have no ~/.cargo/bin on PATH).
+        # Route all cargo builds through kache
         file.".cargo/config.toml".text = ''
           [build]
           rustc-wrapper = "/home/skyeav/.cargo/bin/kache"
