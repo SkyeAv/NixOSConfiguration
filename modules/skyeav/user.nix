@@ -43,6 +43,7 @@
       cloudflare-warp
       signal-desktop
       podman-compose
+      golangci-lint
       rust-analyzer
       wl-clipboard
       claude-code
@@ -73,6 +74,7 @@
       nix-diff
       qrencode
       openscad
+      gofumpt
       zoom-us
       gnumake
       ripgrep
@@ -89,6 +91,7 @@
       psmisc
       rustup
       drawio
+      flyctl
       aria2
       gopls
       mixxx
