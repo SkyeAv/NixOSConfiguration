@@ -92,6 +92,7 @@
       rustup
       drawio
       flyctl
+      gephi
       aria2
       gopls
       mixxx
