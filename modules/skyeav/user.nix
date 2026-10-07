@@ -77,6 +77,7 @@
       openscad
       gofumpt
       zoom-us
+      ntfy-sh
       gnumake
       ripgrep
       vesktop
