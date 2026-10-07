@@ -39,6 +39,7 @@
       bitwarden-desktop
       telegram-desktop
       llama-cpp-vulkan
+      google-cloud-sdk
       elmPackages.elm
       cloudflare-warp
       signal-desktop
