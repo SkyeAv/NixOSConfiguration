@@ -33,12 +33,14 @@
           syntaxHighlighting.enable = true;
           # Zsh aliases
           shellAliases = {
-            amphetamine = ''systemd-inhibit --what=idle:sleep --why="Presentation" sleep infinity'';
+            amphetamine = ''systemd-inhibit --what=idle:sleep --why="amphetamine" sleep infinity'';
             gateway-hypatia = "ssh -J sgoetz@gateway.systemsbiology.net sgoetz@hypatia";
             gateway = "ssh -J sgoetz@gateway.systemsbiology.net sgoetz@wenceslaus";
             rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#skyeav";
+            router = ''tmux new -ds "cmd/9router" "npx 9router"'';
             wenceslaus = "ssh sgoetz@wenceslaus";
             ht1 = "ssh goetzs@ht1.renci.org";
+            hypatia = "ssh sgoetz@hypatia";
             zed = "zeditor";
             pi = "npx pi";
             ps = "procs";
