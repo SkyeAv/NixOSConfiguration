@@ -65,6 +65,7 @@
       fastfetch
       xdg-utils
       libnotify
+      azure-cli
       opentofu
       ast-grep
       graphviz
