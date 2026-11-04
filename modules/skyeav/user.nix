@@ -66,6 +66,7 @@
       xdg-utils
       libnotify
       azure-cli
+      worktrunk
       opentofu
       ast-grep
       graphviz
