@@ -137,6 +137,7 @@
       lua
       lz4
       jdk
+      yed
       fd
       jq
       go
