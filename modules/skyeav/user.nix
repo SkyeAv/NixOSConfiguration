@@ -65,7 +65,7 @@
       fastfetch
       xdg-utils
       libnotify
-      azure-cli
+      # azure-cli BROKEN BC OF FABRIC
       worktrunk
       opentofu
       ast-grep
