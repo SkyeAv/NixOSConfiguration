@@ -20,6 +20,9 @@
       permittedInsecurePackages = [
         "electron-39.8.10"
       ];
+      problems.handlers = {
+        fabric.broken = "ignore";
+      };
     };
   };
   boot = {
@@ -75,7 +78,6 @@
     # Special boot settings
     plymouth.enable = true;
     consoleLogLevel = 0;
-    initrd.verbose = false;
   };
   # Timezone and location settings
   time.timeZone = "America/Los_Angeles";
