@@ -39,9 +39,13 @@
     sessionVariables = {
       SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       NIXOS_OZONE_WL = "1";
+      # Do NOT add /run/current-system/sw/share/nix-ld/lib here. It is already
+      # exported as NIX_LD_LIBRARY_PATH by programs.nix-ld, and injecting it into
+      # every process shadows store RPATHs (e.g. prek's aws-lc libcrypto vs the
+      # nix-ld set's OpenSSL 3.5.9 libcrypto -> undefined symbol
+      # EVP_aead_aes_128_gcm_tls13).
       LD_LIBRARY_PATH = [
         "${config.hardware.nvidia.package}/lib"
-        "/run/current-system/sw/share/nix-ld/lib"
         "${pkgs.ncurses}/lib"
       ];
     };
